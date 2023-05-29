@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,8 +9,13 @@ import {
   Image,
   Button,
   TouchableOpacity,
+  PanResponder,
+  Animated,
+  Dimensions
 } from "react-native";
 import { useNavigate } from "react-router-native";
+import { v4 as uuidv4 } from "uuid";
+import DraggableFlatList from 'react-native-draggable-flatlist';
 
 const leaderBoard = [
   {
@@ -93,6 +98,24 @@ const Item = ({ item }) => {
 };
 
 const LeaderItem = ({ item }) => {
+  const navigate = useNavigate();
+
+  const btnHandle = () => {
+    console.log("btn pressed");
+  };
+
+  const renderItem = ({ item }) => {
+    return <Item item={item} />;
+  };
+
+  const renderLeaderItem = ({ item }) => {
+    return <LeaderItem item={item} />;
+  };
+
+  const navigateToContacts = () => {
+    navigate("/redeem");
+  };
+
   return (
     <View style={styles.item}>
       <View
@@ -119,6 +142,114 @@ const LeaderItem = ({ item }) => {
   );
 };
 
+// const TodoList = () => {
+//   const [text, setText] = useState("");
+//   const [data, setData] = useState([]);
+
+//   const handleTextInput = (input) => {
+//     setText(input);
+//   };
+
+//   const handleAddTodo = () => {
+//     // get the current text value
+//     const todo = text.trim();
+//     if (!todo) return;
+//     // generate unique key id
+//     const key = uuidv4();
+//     // add new todo with the unique key we generated
+//     setData((prevData) => {
+//       const newItem = {
+//         key,
+//         todo,
+//         isCompleted: false,
+//       };
+//       return [newItem, ...prevData];
+//     });
+//     // reset the input field
+//     setText("");
+//   };
+
+//   const renderItem = ({ item }) => {
+//     return <Item item={item} />;
+//   };
+
+//   return (
+//     <View>
+//       <TextInput
+//         style={styles.input}
+//         onChangeText={handleTextInput}
+//         value={text}
+//         onSubmitEditing={handleAddTodo}
+//         outline
+//       />
+
+//       <DraggableFlatList
+//         data={data}
+//         onDragEnd={({ data }) => setData(data)}
+//         keyExtractor={(item) => item.key}
+//         renderItem={renderItem}
+//       />
+//     </View>    
+//   );
+// };
+
+const DragAndDrop = () => {
+  const [widgets, setWidgets] = useState([]);
+
+  function handleOnDrag(e, widgetType) {
+    e.dataTransfer.setData("widgetType", widgetType);
+  }
+
+  function handleOnDrop(e) {
+    const widgetType = e.dataTransfer.getData("widgetType");
+    console.log("widgetType", widgetType);
+    setWidgets([...widgets, widgetType]);
+    console.log(widgets)
+  }
+  
+  function handleDragOver(e) {
+    e.preventDefault()
+  }
+
+  return(
+    <div style={{display:"flex", flexDirection:"row",}}>
+    <div className="widgets">
+      <div
+        className="widget"
+        draggable
+        onDragStart={(e) => handleOnDrag(e, "Widget A")}
+        style={{backgroundColor:"blue"}}
+      >
+        Widget A
+      </div>
+      <div
+        className="widget"
+        draggable
+        onDragStart={(e) => handleOnDrag(e, "Widget B")}
+      >
+        Widget B
+      </div>
+      <div
+        className="widget"
+        draggable
+        onDragStart={(e) => handleOnDrag(e, "Widget C")}
+      >
+        Widget C
+      </div>
+    </div>
+    <div className="page" onDrop={handleOnDrop} onDragOver={handleDragOver} style={{border:"black", height:"150px", width:"150px"}}>
+      {widgets.map((widget, index) => {
+        return(
+        <div className="dropped-widget" key={index}>
+          {widget}
+        </div>
+        )
+      })}  
+    </div>
+    </div>
+  )
+}
+
 export default function Tree() {
   const navigate = useNavigate();
 
@@ -138,72 +269,68 @@ export default function Tree() {
     navigate("/redeem");
   };
 
-  return (
-    <View style={{ position: "relative", backgroundColor: "#f5f6f7" }}>
-      <View style={styles.pointContainer}>
-        <Text style={styles.pointText}>Points: 321</Text>
-      </View>
-      <View style={styles.btnContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={navigateToContacts}
-        >
-          <Image
-            style={styles.imagebtn}
-            source={require("../assets/donationBtn_50.png")}
-          />
-        </TouchableOpacity>
-      </View>
-      <Image style={styles.tinyLogo} source={require("../assets/tree.png")} />
+  return(
+    <SafeAreaView style={styles.container}>
 
-      <SafeAreaView style={styles.container}>
-        <View style={styles.card}>
-          <Text
-            style={{
-              fontSize: "24px",
-              marginBottom: "8px",
-              fontWeight: "500",
-            }}
-          >
-            Activity
-          </Text>
-          <FlatList
-            data={activities}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-          />
-          <Button
-            onPress={btnHandle}
-            title="View More"
-            accessibilityLabel="Learn more about this purple button"
-          />
-        </View>
-        <Text
-          style={{
-            fontSize: "24px",
-            marginBottom: "8px",
-            marginTop: "16px",
-            fontWeight: "500",
-          }}
-        >
-          Leaderboard
-        </Text>
-        <View style={styles.card}>
-          <FlatList
-            data={leaderBoard}
-            renderItem={renderLeaderItem}
-            keyExtractor={(item) => item.id}
-          />
-          <Button
-            onPress={btnHandle}
-            title="View More"
-            accessibilityLabel="Learn more about this purple button"
-          />
-        </View>
-        <View style={styles.space}></View>
-      </SafeAreaView>
+    <View style={styles.container}>
+    <View>
+      <Text style={{fontSize: 30, fontWeight:'600'}}>Itinery</Text>
+      <Text style={styles.welcomeMessage}>Your 3D2N trip</Text>
     </View>
-  );
+
+    <DragAndDrop/>
+
+    <View style={styles.card}>
+      <Text
+        style={{
+          fontSize: "24px",
+          marginBottom: "8px",
+          fontWeight: "500",
+        }}
+      >Day 1
+      </Text>
+    <FlatList
+        data={activities}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+          </View>
+
+          <View style={styles.card}>
+      <Text
+        style={{
+          fontSize: "24px",
+          marginBottom: "8px",
+          fontWeight: "500",
+        }}
+      >Day 2
+      </Text>
+    <FlatList
+        data={activities}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+          </View>
+
+          <View style={styles.card}>
+      <Text
+        style={{
+          fontSize: "24px",
+          marginBottom: "8px",
+          fontWeight: "500",
+        }}
+      >Day 3
+      </Text>
+    <FlatList
+        data={activities}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+          </View>
+
+    </View>
+    </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -245,6 +372,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: "white",
     boxShadow: "0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)",
+    marginTop: 20
   },
   space: {
     margin: "1rem",
@@ -301,3 +429,90 @@ const styles = StyleSheet.create({
     width: 64,
   },
 });
+
+function OldTree() {
+  const navigate = useNavigate();
+
+  const btnHandle = () => {
+    console.log("btn pressed");
+  };
+
+  const renderItem = ({ item }) => {
+    return <Item item={item} />;
+  };
+
+  const renderLeaderItem = ({ item }) => {
+    return <LeaderItem item={item} />;
+  };
+
+  const navigateToContacts = () => {
+    navigate("/redeem");
+  };
+
+  return (
+    <View style={{ position: "relative", backgroundColor: "#f5f6f7" }}>
+      {/* <View style={styles.pointContainer}>
+        <Text style={styles.welcomeMessage}>Itinery</Text>
+      </View>
+      <View style={styles.btnContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={navigateToContacts}
+        >
+          <Image
+            style={styles.imagebtn}
+            source={require("../assets/donationBtn_50.png")}
+          />
+        </TouchableOpacity>
+      </View>
+      <Image style={styles.tinyLogo} source={require("../assets/tree.png")} /> */}
+
+      <SafeAreaView style={styles.container}>
+        <View style={styles.card}>
+          <Text
+            style={{
+              fontSize: "24px",
+              marginBottom: "8px",
+              fontWeight: "500",
+            }}
+          >
+            Activity
+          </Text>
+          <FlatList
+            data={activities}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
+          <Button
+            onPress={btnHandle}
+            title="View More"
+            accessibilityLabel="Learn more about this purple button"
+          />
+        </View>
+        <Text
+          style={{
+            fontSize: "24px",
+            marginBottom: "8px",
+            marginTop: "16px",
+            fontWeight: "500",
+          }}
+        >
+          Leaderboard
+        </Text>
+        <View style={styles.card}>
+          <FlatList
+            data={leaderBoard}
+            renderItem={renderLeaderItem}
+            keyExtractor={(item) => item.id}
+          />
+          <Button
+            onPress={btnHandle}
+            title="View More"
+            accessibilityLabel="Learn more about this purple button"
+          />
+        </View>
+        <View style={styles.space}></View>
+      </SafeAreaView>
+    </View>
+  );
+}

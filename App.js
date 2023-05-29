@@ -8,6 +8,8 @@ import {
   faTree,
   faSackDollar,
 } from "@fortawesome/free-solid-svg-icons";
+import "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import Tree from "./pages/Tree";
 import Funds from "./pages/Funds";
@@ -17,6 +19,7 @@ import Redeem from "./pages/Redeem";
 import Activity from "./pages/activity";
 import RedeemDetail from "./pages/RedeemDetail"
 import FundsDetail from "./pages/FundsDetail";
+import Test from "./pages/test";
 
 export default function App() {
   const [navIndex, setNavIndex] = useState(0);
