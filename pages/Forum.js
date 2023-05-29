@@ -1,11 +1,15 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
   SafeAreaView,
   Image,
-  TouchableOpacity, TextInput, Pressable, Modal, Button
+  TouchableOpacity,
+  TextInput,
+  Pressable,
+  Modal,
+  Button,
 } from "react-native";
 import { useNavigate } from "react-router-native";
 
@@ -88,11 +92,11 @@ export default function Forum() {
                   <Text style={styles.itemTitle}>{index.user}</Text>
 
                   <Text style={{ fontWeight: 800, color: "black" }}>
-                      {index.date}
-                    </Text>
-                    <Text style={{ fontWeight: 500, color: "black" }}>
-                      {index.review}
-                    </Text>
+                    {index.date}
+                  </Text>
+                  <Text style={{ fontWeight: 500, color: "black" }}>
+                    {index.review}
+                  </Text>
                   <View
                     style={{ display: "flex", flexDirection: "column", gap: 8 }}
                   >
@@ -254,6 +258,6 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     width: "100%",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 });
