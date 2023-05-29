@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
   StyleSheet,
   Text,
   View,
   SafeAreaView,
   Image,
-  TouchableOpacity,
-  TextInput,
-  Pressable,
-  Modal,
-  Button,
+  TouchableOpacity, TextInput, Pressable, Modal, Button
 } from "react-native";
 import { useNavigate } from "react-router-native";
 
@@ -70,7 +66,6 @@ export default function Forum() {
     navigate("/forum/detail");
   };
   const navigateTwo = useNavigate();
-
   const navigateReview = () => {
     navigateTwo("/forum/inputdetail");
   };
@@ -90,54 +85,20 @@ export default function Forum() {
                 onPress={navigateDetail}
               >
                 <View style={styles.card}>
-                  <View style={{ display: "flex", gap: 3}}>
-                  <Text style={{ fontWeight: 800, color: "black", fontSize: 20 }}>{index.attraction}</Text>
-                  {index.tag.map((t, key) => {
-                      return (
-                        <Text
-                          style={{
-                            display: "inline-block",
-                            width: "fit-content",
-                            color: "white",
-                            padding: 4,
-                            borderRadius: 4,
-                            backgroundColor: "#00997F",
-                          }}
-                          key={key}
-                        >
-                          {t}
-                        </Text>
-                      );
-                    })}
-                    </View>
-                  <View style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: 15,
-                  }}>
-                    <Image
-                      style={styles.itemAvatar}
-                      source={index.image}
-                    ></Image>
-                    <View>
-                      <Text style={{ fontWeight: 500, color: "black" }}>
-                        {index.user}
-                      </Text>
-                      <Text style={{ fontWeight: 500, color: "grey" }}>
-                        {index.date}
-                      </Text>
-                    </View>
-                  </View>
+                  <Text style={styles.itemTitle}>{index.user}</Text>
 
-                  <Text style={{ fontWeight: 500, color: "black" }}>
-                    {index.review}
-                  </Text>
+                  <Text style={{ fontWeight: 800, color: "black" }}>
+                      {index.date}
+                    </Text>
+                    <Text style={{ fontWeight: 500, color: "black" }}>
+                      {index.review}
+                    </Text>
                   <View
-                    style={{ display: "flex", flexDirection: "row", gap: 8 }}
+                    style={{ display: "flex", flexDirection: "column", gap: 8 }}
                   >
                     <Image
                       style={styles.itemProfile}
-                      source={require("../assets/uss.jpg")}
+                      source={require("../assets/donate_1.jpg")}
                     ></Image>
 
                     <Image
@@ -293,6 +254,6 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     width: "100%",
-    alignItems: "center",
-  },
+    alignItems: "center"
+  }
 });
