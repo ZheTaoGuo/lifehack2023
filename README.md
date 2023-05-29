@@ -27,6 +27,8 @@ Create collaboration opportunities with airlines and local businesses
 
 <li> Community Forum </li>
 
+Allows tourists to share reviews on visited tourist destinations 
+
 ## Technical Stack
 
 FrontEnd: React Native 
