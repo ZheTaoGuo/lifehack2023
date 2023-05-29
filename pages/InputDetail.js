@@ -56,11 +56,11 @@ export default function InputDetail() {
             placeholder="Enter Attraction Name"
             onChangeText={(newText) => setAttractionName(newText)}
           />
-          <Text style={styles.inputStar}>Description:</Text>
+          <Text style={styles.inputStar}>Review:</Text>
 
           <TextInput
             style={styles.textInput}
-            placeholder="Enter Description"
+            placeholder="Enter Review"
             onChangeText={(newText) => setDescription(newText)}
           />
           <Text style={styles.inputStar}>Input Star Rating</Text>

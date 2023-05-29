@@ -177,7 +177,7 @@ export default function Tree() {
 
     <View style={styles.container}>
     <View>
-      <Text style={{fontSize: 30, fontWeight:'600'}}>Itinerary</Text>
+      <Text style={{fontSize: 30, fontWeight:'600', textAlign:"center"}}>Itinerary</Text>
     </View>
     
     <Text style={styles.standardText}>Drag and drop your acitivies to plan your 
@@ -387,7 +387,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: StatusBar.currentHeight,
     marginHorizontal: 16,
-    marginTop: 16,
   },
   card: {
     padding: "1.5rem",
