@@ -19,15 +19,19 @@ Tourists in any foreign country
 
 <li> Tourist Destination Recommender </li>
 
-Allows tourists to curate their itinerary by selecting their preferred attractions
+Allows users to curate their itinerary by selecting their preferred destinations and attractions. The filter helps to tailor the suggestions to users' travelling styles. The recommender is based on users' past swiping history, preferences and commonly visited places by other users. 
+
+<li> Itinerary Planner </li>
+
+Users can arrange the order of activities based on the duration of their stay.
 
 <li> Partnership with Airlines </li>
 
-Create collaboration opportunities with airlines and local businesses 
+Optimise the operations of the aviation industry by creating collaboration opportunities with airlines and local businesses to distribute vouchers to users. Partnerships promote airlines as tourists that fly with them are able to redeem vouchers for the activities that they are interested in.
 
 <li> Community Forum </li>
 
-Allows tourists to write and share reviews about local attractions that they have visited before and exchange information between one another 
+Allows users to write and share reviews about local attractions that they have visited before and gain in-depth and accurate insights from one another, including festive events held at these attractions.
 
 ## Technical Stack
 
