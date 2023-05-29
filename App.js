@@ -3,10 +3,11 @@ import { StyleSheet, Text, View, ScrollView, TouchableWithoutFeedback } from "re
 import { NativeRouter, Route, Link, Routes } from "react-router-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
+  faMapLocationDot,
   faUser,
-  faHandshakeAngle,
-  faTree,
-  faSackDollar,
+  faClipboardCheck,
+  faTicket,
+  faComment
 } from "@fortawesome/free-solid-svg-icons";
 import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -18,8 +19,9 @@ import Profile from "./pages/Profile";
 import Redeem from "./pages/Redeem";
 import Activity from "./pages/activity";
 import RedeemDetail from "./pages/RedeemDetail"
-import FundsDetail from "./pages/FundsDetail";
-import Test from "./pages/test";
+import ForumDetail from "./pages/ForumDetail";
+import Forum from "./pages/Forum"
+import InputDetail from "./pages/InputDetail"
 
 export default function App() {
   const [navIndex, setNavIndex] = useState(0);
@@ -36,37 +38,46 @@ export default function App() {
             <Route exact path="/" element={<Volunteer />} />
             <Route path="/tree" element={<Tree />} />
             <Route path="/funds" element={<Funds />} />
+            <Route path="/forum" element={<Forum/>} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/activity" element={<Activity />} />
 
             <Route path="/redeem" element={<Redeem />} />
             <Route path="/redeem/:slug" element={<RedeemDetail />} />
-            <Route path="/funds/:slug" element={<FundsDetail />} />
+            <Route path="/forum/:slug" element={<ForumDetail />} />
+            <Route path="/forum/inputdetail" element={<InputDetail />} />
           </Routes>
+
         </ScrollView>
         <View style={styles.nav}>
           <Link to="/" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(0) } underlayColor="#f0f4f7" style={styles.navItem}>
             <View style={styles.subNavItem}>
-              <FontAwesomeIcon style={styles.navIcon} icon={faHandshakeAngle} color={navIndex === 0 ? "#2fac97" : "rgba(0, 0, 0, 0.3)"} />
-              <Text style={navIndex === 0 ? styles.navItemSelectedText : styles.navItemText}>Volunteer</Text>
+              <FontAwesomeIcon style={styles.navIcon} icon={faMapLocationDot} color={navIndex === 0 ? "#0000CD" : "rgba(0, 0, 0, 0.3)"} />
+              <Text style={navIndex === 0 ? styles.navItemSelectedText : styles.navItemText}>Activities</Text>
             </View>
           </Link>
           <Link to="/tree" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(1) } underlayColor="#f0f4f7" style={styles.navItem}>
             <View style={styles.subNavItem}>
-              <FontAwesomeIcon style={styles.navIcon} icon={faTree} color={navIndex === 1 ? "#2fac97" : "rgba(0, 0, 0, 0.3)"} />
-              <Text style={navIndex === 1 ? styles.navItemSelectedText : styles.navItemText}>Tree</Text>
+              <FontAwesomeIcon style={styles.navIcon} icon={faClipboardCheck} color={navIndex === 1 ? "#0000CD" : "rgba(0, 0, 0, 0.3)"} />
+              <Text style={navIndex === 1 ? styles.navItemSelectedText : styles.navItemText}>Itinerary</Text>
             </View>
           </Link>
           <Link to="/funds" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(2) } underlayColor="#f0f4f7" style={styles.navItem}>
             <View style={styles.subNavItem}>
-              <FontAwesomeIcon style={styles.navIcon} icon={faSackDollar} color={navIndex === 2 ? "#2fac97" : "rgba(0, 0, 0, 0.3)"} />
-              <Text style={navIndex === 2 ? styles.navItemSelectedText : styles.navItemText}>Funds</Text>
+              <FontAwesomeIcon style={styles.navIcon} icon={faTicket} color={navIndex === 2 ? "#0000CD" : "rgba(0, 0, 0, 0.3)"} />
+              <Text style={navIndex === 2 ? styles.navItemSelectedText : styles.navItemText}>Airlines</Text>
             </View>
           </Link>
-          <Link to="/profile" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(3) } underlayColor="#f0f4f7" style={styles.navItem}>
+          <Link to="/forum" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(3) } underlayColor="#f0f4f7" style={styles.navItem}>
             <View style={styles.subNavItem}>
-              <FontAwesomeIcon style={styles.navIcon} icon={faUser} color={navIndex === 3 ? "#2fac97" : "rgba(0, 0, 0, 0.3)"} />
-              <Text style={navIndex === 3 ? styles.navItemSelectedText : styles.navItemText}>Profile</Text>
+              <FontAwesomeIcon style={styles.navIcon} icon={faComment} color={navIndex === 3 ? "#0000CD" : "rgba(0, 0, 0, 0.3)"} />
+              <Text style={navIndex === 3 ? styles.navItemSelectedText : styles.navItemText}>Forum</Text>
+            </View>
+          </Link>
+          <Link to="/profile" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(4) } underlayColor="#f0f4f7" style={styles.navItem}>
+            <View style={styles.subNavItem}>
+              <FontAwesomeIcon style={styles.navIcon} icon={faUser} color={navIndex === 4 ? "#0000CD" : "rgba(0, 0, 0, 0.3)"} />
+              <Text style={navIndex === 4 ? styles.navItemSelectedText : styles.navItemText}>Profile</Text>
             </View>
           </Link>
         </View>
@@ -100,7 +111,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   navItemSelectedText: {
-    color: "#2fac97"
+    color: "#0000CD	"
   },
   navItemText: {
     color: "rgba(0, 0, 0, 0.3)"

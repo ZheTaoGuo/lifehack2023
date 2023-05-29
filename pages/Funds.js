@@ -97,6 +97,7 @@ export default function Funds() {
                       gap: 5,
                     }}
                   >
+
                     {d.tag.map((t, key) => {
                       return (
                         <Text
@@ -110,7 +111,7 @@ export default function Funds() {
                           }}
                           key={key}
                         >
-                          {t}
+                          {t} + hello
                         </Text>
                       );
                     })}
