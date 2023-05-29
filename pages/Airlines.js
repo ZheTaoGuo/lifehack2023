@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   },
   shopButton: {
     padding: 10,
-    backgroundColor: "#0047AB",
+    backgroundColor: "#ADD8E6",
     borderRadius: 4,
     margin: 5,
     display: "flex",

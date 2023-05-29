@@ -152,11 +152,12 @@ export default function Activity() {
 
       <View
         style={{
+          minHeight: "100vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          position: "absolute",
-          bottom: 10,
+          position: "relative",
+          bottom: 40,
           zIndex: 5,
           boxShadow:
             "0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)",
@@ -207,7 +208,7 @@ export default function Activity() {
               }}
               disabled={registered}
             >
-              <Text style={styles.textStyle}>Closel</Text>
+              <Text style={styles.textStyle}>Close</Text>
             </Pressable>
           </View>
         </View>
@@ -248,6 +249,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   donateBtn: {
+    position: "absolute",
     backgroundColor: "#00997F",
     width: "fit-content",
     padding: 16,
@@ -255,9 +257,10 @@ const styles = StyleSheet.create({
     color: "white",
     paddingTop: 8,
     paddingBottom: 8,
-    bottom: 0
+    bottom: 20,
   },
   donateBtnDisabled: {
+    position: "absolute",
     backgroundColor: "#00997f80",
     width: "fit-content",
     padding: 16,
@@ -265,7 +268,7 @@ const styles = StyleSheet.create({
     color: "white",
     paddingTop: 8,
     paddingBottom: 8,
-    bottom: 0
+    bottom: 20
   },
   card: {
     padding: "1rem",
