@@ -64,7 +64,6 @@ export default function Forum() {
     navigate("/forum/detail");
   };
   const navigateTwo = useNavigate();
-
   const navigateReview = () => {
     navigateTwo("/forum/inputdetail");
   };
