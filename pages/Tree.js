@@ -38,40 +38,41 @@ const leaderBoard = [
   },
 ];
 
-const activities = [
+const activityList = [
   {
-    event: "referral",
-    username: "Chen Yun",
-    datetime: "2022/07/09 12:00:00",
-    point: 50,
+    title: "Universal Studios Singapore",
+    image_url: "",
+    activity_type: "Theme park",
+    location: "Singapore"
   },
   {
-    event: "participate",
-    username: "Help Kid",
-    datetime: "2022/07/09 11:00:00",
-    point: 261,
+    title: "Gardens by the Bay",
+    image_url: "",
+    activity_type: "Gardens & parks",
+    location: "Singapore"
   },
   {
-    event: "daily",
-    username: "Chen Yun",
-    datetime: "2022/07/09 08:00:00",
-    point: 10,
+    title: "Singapore Flyer",
+    image_url: "",
+    activity_type: "Observation deck",
+    location: "Singapore"
   },
 ];
 
 const Item = ({ item }) => {
-  let title = "";
-  switch(item.event){
-    case "referral":
-      title = `Invited ${item.username}`
-      break;
-    case "participate":
-      title = `Participated in ${item.username}`
-      break;
-    case "daily":
-      title = "Daily Login"
-      break;
-  }
+  // let title = "";
+  // switch(item.event){
+  //   case "referral":
+  //     title = `Invited ${item.username}`
+  //     break;
+  //   case "participate":
+  //     title = `Participated in ${item.username}`
+  //     break;
+  //   case "daily":
+  //     title = "Daily Login"
+  //     break;
+
+  // }
 
   return (
     <View style={styles.item}>
@@ -83,16 +84,17 @@ const Item = ({ item }) => {
           alignItems: "center",
         }}
       >
-        <Image
+        {/* <Text>{item}</Text> */}
+        {/* <Image
           style={styles.itemProfile}
           source={require("../assets/tree.png")}
-        />
-        <View>
-          <Text style={styles.itemTitle}>{title}</Text>
-          <Text style={styles.itemDesc}>{item.datetime}</Text>
-        </View>
+        /> */}
+        {/* <View>
+          <Text style={styles.itemTitle}>{item.title}</Text>
+          <Text style={styles.itemDesc}>{item.activity_type}</Text>
+        </View> */}
       </View>
-      <Text style={styles.itemPoint}>{item.point} points</Text>
+      {/* <Text style={styles.itemPoint}>{item.location} points</Text> */}
     </View>
   );
 };
@@ -141,57 +143,6 @@ const LeaderItem = ({ item }) => {
     </View>
   );
 };
-
-// const TodoList = () => {
-//   const [text, setText] = useState("");
-//   const [data, setData] = useState([]);
-
-//   const handleTextInput = (input) => {
-//     setText(input);
-//   };
-
-//   const handleAddTodo = () => {
-//     // get the current text value
-//     const todo = text.trim();
-//     if (!todo) return;
-//     // generate unique key id
-//     const key = uuidv4();
-//     // add new todo with the unique key we generated
-//     setData((prevData) => {
-//       const newItem = {
-//         key,
-//         todo,
-//         isCompleted: false,
-//       };
-//       return [newItem, ...prevData];
-//     });
-//     // reset the input field
-//     setText("");
-//   };
-
-//   const renderItem = ({ item }) => {
-//     return <Item item={item} />;
-//   };
-
-//   return (
-//     <View>
-//       <TextInput
-//         style={styles.input}
-//         onChangeText={handleTextInput}
-//         value={text}
-//         onSubmitEditing={handleAddTodo}
-//         outline
-//       />
-
-//       <DraggableFlatList
-//         data={data}
-//         onDragEnd={({ data }) => setData(data)}
-//         keyExtractor={(item) => item.key}
-//         renderItem={renderItem}
-//       />
-//     </View>    
-//   );
-// };
 
 const DragAndDrop = () => {
   const [widgets, setWidgets] = useState([]);
@@ -251,6 +202,11 @@ const DragAndDrop = () => {
 }
 
 export default function Tree() {
+  const [widgets1, setWidgets1] = useState([]);
+  const [widgets2, setWidgets2] = useState([]);
+  const [widgets3, setWidgets3] = useState([]);
+  const [activities, setActivities] = useState(activityList);
+
   const navigate = useNavigate();
 
   const btnHandle = () => {
@@ -269,64 +225,206 @@ export default function Tree() {
     navigate("/redeem");
   };
 
+  function handleOnDrag(e, widgetType) {
+    e.dataTransfer.setData("widgetType", widgetType);
+  }
+
+  function handleOnDrop1(e) {
+    const widgetType = e.dataTransfer.getData("widgetType");
+    console.log("widgetType", widgetType);
+    setWidgets1([...widgets1, widgetType]);
+    const removedActivity = activities.filter(function(activity){
+      return activity.title!= widgetType
+    })
+    console.log(removedActivity)
+    setActivities(removedActivity)
+    console.log(widgets1)
+  }
+
+  function handleOnDrop2(e) {
+    const widgetType = e.dataTransfer.getData("widgetType");
+    console.log("widgetType", widgetType);
+    setWidgets2([...widgets2, widgetType]);
+    const removedActivity = activities.filter(function(activity){
+      return activity.title!= widgetType
+    })
+    console.log(removedActivity)
+    setActivities(removedActivity)
+    console.log(widgets2)
+  }
+
+  function handleOnDrop3(e) {
+    const widgetType = e.dataTransfer.getData("widgetType");
+    console.log("widgetType", widgetType);
+    setWidgets3([...widgets3, widgetType]);
+    const removedActivity = activities.filter(function(activity){
+      return activity.title!= widgetType
+    })
+    console.log(removedActivity)
+    setActivities(removedActivity)
+    console.log(widgets3)
+  }
+  
+  function handleDragOver(e) {
+    e.preventDefault()
+  }
+
   return(
     <SafeAreaView style={styles.container}>
 
     <View style={styles.container}>
     <View>
       <Text style={{fontSize: 30, fontWeight:'600'}}>Itinery</Text>
-      <Text style={styles.welcomeMessage}>Your 3D2N trip</Text>
+      {/* <Text style={styles.welcomeMessage}>Your 3D2N trip</Text> */}
     </View>
 
-    <DragAndDrop/>
+    {/* <DragAndDrop/> */}
+    
+    <Text style={styles.standardText}>Drag and drop your acitivies to plan your 
+      <Text style={styles.boldText}> 3D2N</Text> stay at
+      <Text style={styles.boldText}> Singapore</Text>
+    </Text>
 
+    <View style={styles.activitiesContainer}>
+    <Text style={styles.sectionTitle}>Activities</Text>
+    <View style={styles.widgetsContainer}>
+      {activities.map((activity) => {
+          return(
+            <div
+              className="widget"
+              draggable
+              onDragStart={(e) => handleOnDrag(e, activity.title)}
+            >
+          <View style={styles.item}>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "16px",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              style={styles.itemProfile}
+              source={require("../assets/tree.png")}
+            />
+            <View>
+              <Text style={styles.title}>{activity.title}</Text>
+              <Text style={styles.itemDesc}>{activity.activity_type}</Text>
+            </View>
+          </View>
+        </View>
+            </div>
+          )
+        })}  
+    </View>
+    </View>
+
+<View style={styles.standardContainer}>
+    <div onDrop={handleOnDrop1} onDragOver={handleDragOver}>
     <View style={styles.card}>
       <Text
-        style={{
-          fontSize: "24px",
-          marginBottom: "8px",
-          fontWeight: "500",
-        }}
+        style={styles.sectionTitle}
       >Day 1
       </Text>
-    <FlatList
-        data={activities}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
-          </View>
 
-          <View style={styles.card}>
+        {/* <FlatList
+          data={widgets}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        /> */}
+        {widgets1.map((widget, index) => {
+        return(
+          <View style={styles.item}>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "16px",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              style={styles.itemProfile}
+              source={require("../assets/tree.png")}
+            />
+            <View>
+              <Text style={styles.title}>{widget}</Text>
+              <Text style={styles.itemDesc}>Theme Park</Text>
+            </View>
+          </View>
+        </View>
+        )
+      })}  
+
+    </View>
+    </div>
+
+    <div onDrop={handleOnDrop2} onDragOver={handleDragOver}>
+    <View style={styles.card}>
       <Text
-        style={{
-          fontSize: "24px",
-          marginBottom: "8px",
-          fontWeight: "500",
-        }}
+        style={styles.sectionTitle}
       >Day 2
       </Text>
-    <FlatList
-        data={activities}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+      {widgets2.map((widget, index) => {
+        return(
+          <View style={styles.item}>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "16px",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              style={styles.itemProfile}
+              source={require("../assets/tree.png")}
+            />
+            <View>
+              <Text style={styles.title}>{widget}</Text>
+              <Text style={styles.itemDesc}>Theme Park</Text>
+            </View>
           </View>
+        </View>
+        )
+      })}  
+    </View>
+    </div>
 
-          <View style={styles.card}>
+    <div onDrop={handleOnDrop3} onDragOver={handleDragOver}>
+    <View style={styles.card}>
       <Text
-        style={{
-          fontSize: "24px",
-          marginBottom: "8px",
-          fontWeight: "500",
-        }}
+        style={styles.sectionTitle}
       >Day 3
       </Text>
-    <FlatList
-        data={activities}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+      {widgets3.map((widget, index) => {
+        return(
+          <View style={styles.item}>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "16px",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              style={styles.itemProfile}
+              source={require("../assets/tree.png")}
+            />
+            <View>
+              <Text style={styles.title}>{widget}</Text>
+              <Text style={styles.itemDesc}>Theme Park</Text>
+            </View>
           </View>
+        </View>
+        )
+      })}  
+    </View>
+    </div>
+
+    </View>
 
     </View>
     </SafeAreaView>
@@ -334,6 +432,36 @@ export default function Tree() {
 }
 
 const styles = StyleSheet.create({
+  standardText: {
+    fontSize: 20,
+    fontWeight: "normal"
+  },
+  boldText : {
+    fontSize: 20,
+    fontWeight: "bold"
+  },
+  sectionTitle : {
+    fontSize: "24px",
+    marginBottom: "8px",
+    fontWeight: "500",
+  },
+  widgetsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    gap: "20px",
+  },
+  standardContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "15px"
+  },
+  activitiesContainer: {
+    backgroundColor: "#D3D3D3",
+    borderRadius: 8,
+    padding: "1.5rem",
+    marginTop: 20,
+    marginBottom: 10,
+  },
   btnContainer: {
     display: "flex",
     flexDirection: "column",
@@ -372,7 +500,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: "white",
     boxShadow: "0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)",
-    marginTop: 20
+    marginTop: 10,
+    marginBottom: 10
   },
   space: {
     margin: "1rem",
@@ -384,9 +513,11 @@ const styles = StyleSheet.create({
     gap: "16px",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingBottom: "1rem",
+    padding: "1rem",
     borderBottomWidth: "1px",
     borderColor: "#e5e7eb",
+    backgroundColor: "white",
+    borderRadius: 8
   },
   header: {
     fontSize: 32,
@@ -402,7 +533,7 @@ const styles = StyleSheet.create({
   itemProfile: {
     width: 48,
     height: 48,
-    borderRadius: 99999,
+    borderRadius: 10,
   },
   itemTitle: {
     fontSize: "1rem",
