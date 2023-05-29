@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
@@ -51,6 +52,8 @@ const Attractions = [
   },
 ];
 
+// const display = Attractions;
+
 const categories = [
   {id: "1", title: "Theme Park"},
   {id: "2", title:"Wildlife Attractions"}, 
@@ -69,6 +72,7 @@ class VolunteerDetail extends React.Component {
       currentIndex: 0,
       showFilter: false, // Track whether to show the filter modal
       selectedCategory: 'All',
+      display: Attractions,
     };
 
     this.rotate = this.position.x.interpolate({
@@ -149,7 +153,6 @@ class VolunteerDetail extends React.Component {
     return (
       <Modal visible={showFilter} animationType="slide" >
         <View style={styles.filterModalContainer}>
-          {/* <View style={styles.filterModalContent}> */}
             <View style={styles.filterModalHeader}>
               <Text style={styles.filterModalTitle}>Filter By</Text>
             </View>
@@ -159,8 +162,9 @@ class VolunteerDetail extends React.Component {
                   data={categories}
                   renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => {
-                      this.setState({ selectedCategory: item.title });
-                      this.setState({ showFilter: false, currentIndex: 0 });
+                      this.setState({  selectedCategory: item.title ,  showFilter: false, currentIndex: 0 });
+                      this.setState({display : Attractions.filter(attraction => attraction.tag.includes(item.title))});
+
                     }} >
                       <Text style={styles.item}>{item.title}</Text>
                     </TouchableOpacity>
@@ -168,22 +172,16 @@ class VolunteerDetail extends React.Component {
                 />
               </View>
             </View>
+
           </View>
 
       </Modal>
     );
   };
   
-  applyFilter = () => {
-    this.setState({ showFilter: false, currentIndex: 0 });
-  };
-  
-  handleFilterPress = () => {
-    this.setState({ showFilter: true });
-  };
 
   renderAttractions = () => {
-    return Attractions.map((item, i) => {
+    return this.state.display.map((item, i) => {
       if (i < this.state.currentIndex) {
         return null;
       } else if (i == this.state.currentIndex) {
@@ -267,7 +265,7 @@ class VolunteerDetail extends React.Component {
                   bottom: 10,
                   padding: 15,
                   width: "100%",
-                  fontSize: 32,
+                  fontSize: 10,
                   fontWeight: 600,
                   color: "white",
                   textShadow: "2px 4px 3px rgba(0,0,0,0.3)",
@@ -282,7 +280,7 @@ class VolunteerDetail extends React.Component {
                   top: 10,
                   padding: 15,
                   width: "100%",
-                  fontSize: 32,
+                  fontSize: 10,
                   display: "flex",
                 }}
               >
