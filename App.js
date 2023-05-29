@@ -45,7 +45,7 @@ export default function App() {
             <Route path="/redeem/:slug" element={<RedeemDetail />} />
             {/* <Route path="/funds/:slug" element={<FundsDetail />} /> */}
             <Route path="/airlines" element={<Airlines />} />
-            <Route path="/qrCode" component={<QRCodePage />} />
+            <Route path="/airlines/:slug" component={<QRCodePage />} />
           </Routes>
 
         </ScrollView>
@@ -62,9 +62,9 @@ export default function App() {
               <Text style={navIndex === 1 ? styles.navItemSelectedText : styles.navItemText}>Itinerary</Text>
             </View>
           </Link>
-          <Link to="/funds" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(2) } underlayColor="#f0f4f7" style={styles.navItem}>
+          <Link to="/airlines" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(2) } underlayColor="#f0f4f7" style={styles.navItem}>
             <View style={styles.subNavItem}>
-              <FontAwesomeIcon style={styles.navIcon} icon={faTicket} color={navIndex === 2 ? "#0000CD" : "rgba(0, 0, 0, 0.3)"} />
+              <FontAwesomeIcon style={styles.navIcon} icon={faPlane} color={navIndex === 2 ? "#0000CD" : "rgba(0, 0, 0, 0.3)"} />
               <Text style={navIndex === 2 ? styles.navItemSelectedText : styles.navItemText}>Airlines</Text>
             </View>
           </Link>
