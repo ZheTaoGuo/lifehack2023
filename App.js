@@ -12,10 +12,9 @@ import {
 import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-import Tree from "./pages/Tree";
+import Tree from "./pages/Itinerary";
 import Funds from "./pages/Funds";
 import Volunteer from "./pages/Volunteer";
-import Profile from "./pages/Profile";
 import Redeem from "./pages/Redeem";
 import Activity from "./pages/activity";
 import RedeemDetail from "./pages/RedeemDetail"
@@ -39,7 +38,6 @@ export default function App() {
             <Route path="/tree" element={<Tree />} />
             <Route path="/funds" element={<Funds />} />
             <Route path="/forum" element={<Forum/>} />
-            <Route path="/profile" element={<Profile />} />
             <Route path="/activity" element={<Activity />} />
 
             <Route path="/redeem" element={<Redeem />} />
@@ -72,12 +70,6 @@ export default function App() {
             <View style={styles.subNavItem}>
               <FontAwesomeIcon style={styles.navIcon} icon={faComment} color={navIndex === 3 ? "#ADD8E6" : "rgba(0, 0, 0, 0.3)"} />
               <Text style={navIndex === 3 ? styles.navItemSelectedText : styles.navItemText}>Forum</Text>
-            </View>
-          </Link>
-          <Link to="/profile" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(4) } underlayColor="#f0f4f7" style={styles.navItem}>
-            <View style={styles.subNavItem}>
-              <FontAwesomeIcon style={styles.navIcon} icon={faUser} color={navIndex === 4 ? "#ADD8E6" : "rgba(0, 0, 0, 0.3)"} />
-              <Text style={navIndex === 4 ? styles.navItemSelectedText : styles.navItemText}>Profile</Text>
             </View>
           </Link>
         </View>

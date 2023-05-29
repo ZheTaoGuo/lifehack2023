@@ -33,7 +33,7 @@ export default function InputDetail() {
   };
 
   return (
-    <View style={{ backgroundColor: "#00997F", height: "100vh" }}>
+    <View style={{ backgroundColor: "#ADD8E6", height: "100vh" }}>
       <SafeAreaView>
         <View style={styles.headerContainer}>
           <TouchableOpacity style={styles.backBtn} onPress={navigateBack}>
@@ -126,7 +126,7 @@ headerContainer: {
   textInput: {
     padding: "1rem",
     borderWidth: 1,
-    backgroundColor: "grey",
+    backgroundColor: "lightgrey",
     borderColor: "white",
     height: 20,
     width: "100%",
@@ -165,7 +165,7 @@ headerContainer: {
     alignItems: "flex-end",
     },
   donateBtn: {
-    backgroundColor: "#00997F",
+    backgroundColor: "#ADD8E6",
     width: "fit-content",
     padding: 16,
     borderRadius: 8,
