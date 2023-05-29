@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
   StyleSheet,
   Text,
   View,
   SafeAreaView,
   Image,
-  TouchableOpacity,
-  TextInput,
-  Pressable,
-  Modal,
-  Button,
+  TouchableOpacity, TextInput, Pressable, Modal, Button
 } from "react-native";
 import { useNavigate } from "react-router-native";
 
@@ -83,6 +79,7 @@ export default function Forum() {
         <View style={styles.redeemContainer}>
           {reviews.map((index, key) => {
             return (
+              
               <TouchableOpacity
                 style={styles.item}
                 key={key}
@@ -92,11 +89,11 @@ export default function Forum() {
                   <Text style={styles.itemTitle}>{index.user}</Text>
 
                   <Text style={{ fontWeight: 800, color: "black" }}>
-                    {index.date}
-                  </Text>
-                  <Text style={{ fontWeight: 500, color: "black" }}>
-                    {index.review}
-                  </Text>
+                      {index.date}
+                    </Text>
+                    <Text style={{ fontWeight: 500, color: "black" }}>
+                      {index.review}
+                    </Text>
                   <View
                     style={{ display: "flex", flexDirection: "column", gap: 8 }}
                   >
@@ -110,19 +107,21 @@ export default function Forum() {
                       source={require("../assets/rws.jpg")}
                     ></Image>
                   </View>
-                </View>
+              </View>
               </TouchableOpacity>
-            );
+        );
           })}
 
           <View style={styles.reviewContainer}>
-            <Pressable style={styles.donateBtn} onPressIn={navigateReview}>
-              <Text
-                style={{ color: "white", fontSize: "1.25rem", padding: "10" }}
-              >
-                Enter Review
-              </Text>
-            </Pressable>
+          <Pressable
+          style={styles.donateBtn}
+          onPressIn={navigateReview}
+        >
+          <Text style={{ color: "white", fontSize: "1.25rem", padding: "10"}}>
+            Enter Review
+          </Text>
+
+          </Pressable>
           </View>
         </View>
       </SafeAreaView>
@@ -156,14 +155,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "flex-start",
-    width: "100%",
+    width: "100%"
   },
   reviewContainer: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection :"row",
     flexWrap: "wrap",
     padding: 10,
-    paddingBottom: 30,
+    paddingBottom: 10,
   },
   item: {
     width: "50%",
@@ -258,6 +257,6 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     width: "100%",
-    alignItems: "center",
-  },
+    alignItems: "center"
+  }
 });
