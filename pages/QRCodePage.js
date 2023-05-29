@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
 const QRCodePage = () => {
@@ -7,11 +7,30 @@ const QRCodePage = () => {
       const qrCodeData = '../assets/QRCodeImage.jpg';
 
       return (
-            <View>
-                  <Text>Scan QR Code</Text>
-                  <QRCode value={qrCodeData} size={200} />
+            <View style={styles.container}>
+                  <Text style={styles.title}>Scan QR Code</Text>
+                  <View style={styles.qrContainer}>
+                        <QRCode value={qrCodeData} size={250} />
+                  </View>
             </View>
       );
 };
 
 export default QRCodePage;
+
+const styles = StyleSheet.create({
+      container: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+      },
+      title: {
+            fontSize: 20,
+            fontWeight: 'bold',
+            marginBottom: 20,
+      },
+      qrCodeContainer: {
+            justifyContent: 'center',
+            alignItems: 'center',
+      },
+});
