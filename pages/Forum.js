@@ -19,7 +19,7 @@ const reviews = [
     user: "John Doe",
     tag: ["Theme Park"],
     date: "18 May",
-    review: "It was a pleasant experience for my family. The view was great",
+    review: "It was a pleasant experience for my family. The view was amazing.",
     image: require("../assets/profile.png"),
   },
   {
@@ -27,7 +27,7 @@ const reviews = [
     user: "John Tom",
     tag: ["Theme Park"],
     date: "19 May",
-    review: "It was a bad experience for my family. The view was great",
+    review: "It was a bad experience for my family. The view was bad!",
     image: require("../assets/profile.png"),
   },
   {
@@ -35,7 +35,7 @@ const reviews = [
     user: "Sarah Tom",
     tag: ["Observation Deck"],
     date: "20 May",
-    review: "It was a horrible experience for my family. The view was great",
+    review: "It was a horrible experience for my family. The observation deck was terrible",
     image: require("../assets/profile.png"),
   },
   {
@@ -43,7 +43,7 @@ const reviews = [
     user: "Jimmy Tom",
     tag: ["Observation Deck"],
     date: "20 May",
-    review: "It was a bad experience for my family. The view was great",
+    review: "It was a very good experience for my family. The view was great!",
     image: require("../assets/profile.png"),
   },
   {
@@ -59,7 +59,7 @@ const reviews = [
     user: "Jimmy Tom",
     tag: ["Theme Park"],
     date: "20 May",
-    review: "It was a bad experience for my family. The view was great",
+    review: "It was a bad experience for my family. The view was horrendous.",
     image: require("../assets/profile.png"),
   },
 ];
@@ -70,7 +70,6 @@ export default function Forum() {
     navigate("/forum/detail");
   };
   const navigateTwo = useNavigate();
-
   const navigateReview = () => {
     navigateTwo("/forum/inputdetail");
   };
