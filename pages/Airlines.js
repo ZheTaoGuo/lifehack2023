@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
             backgroundColor: '#F5F5F5',
       },
       airlineContainer: {
-            width: windowWidth/2,
+            width: windowWidth/2 - 250,
             borderRadius: 10,
             backgroundColor: 'white',
             shadowColor: 'black',
@@ -126,13 +126,15 @@ const styles = StyleSheet.create({
       },
       shopContainer: {
             justifyContent: 'center',
-            alignItems: 'center',
+            alignItems: 'flex-start',
       },
       shopButton: {
             padding: 10,
             backgroundColor: '#0047AB',
             borderRadius: 4,
             margin: 5,
+            display: 'flex',
+            flexDirection: 'row',
       },
       shopName: {
             color: 'white',
