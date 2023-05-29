@@ -6,7 +6,7 @@ import {
   faUser,
   faHandshakeAngle,
   faTree,
-  faSackDollar,
+  faPlane,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Tree from "./pages/Tree";
@@ -16,8 +16,9 @@ import Profile from "./pages/Profile";
 import Redeem from "./pages/Redeem";
 import Activity from "./pages/activity";
 import RedeemDetail from "./pages/RedeemDetail"
-import FundsDetail from "./pages/FundsDetail";
+// import FundsDetail from "./pages/FundsDetail";
 import Airlines from "./pages/airlines";
+import QRCodePage from "./pages/QRCodePage";
 
 export default function App() {
   const [navIndex, setNavIndex] = useState(0);
@@ -40,7 +41,7 @@ export default function App() {
             <Route path="/redeem/:slug" element={<RedeemDetail />} />
             {/* <Route path="/funds/:slug" element={<FundsDetail />} /> */}
             <Route path="/airlines" element={<Airlines />} />
-            <Route path="/qrCode" component={<QRCodePage />} />
+            <Route path="/airlines/:slug" element={<QRCodePage />} />
           </Routes>
         </ScrollView>
         <View style={styles.nav}>
@@ -58,8 +59,8 @@ export default function App() {
           </Link>
           <Link to="/airlines" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(2) } underlayColor="#f0f4f7" style={styles.navItem}>
             <View style={styles.subNavItem}>
-              <FontAwesomeIcon style={styles.navIcon} icon={faSackDollar} color={navIndex === 2 ? "#2fac97" : "rgba(0, 0, 0, 0.3)"} />
-              <Text style={navIndex === 2 ? styles.navItemSelectedText : styles.navItemText}>Funds</Text>
+              <FontAwesomeIcon style={styles.navIcon} icon={faPlane} color={navIndex === 2 ? "#2fac97" : "rgba(0, 0, 0, 0.3)"} />
+              <Text style={navIndex === 2 ? styles.navItemSelectedText : styles.navItemText}>Airlines</Text>
             </View>
           </Link>
           <Link to="/profile" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(3) } underlayColor="#f0f4f7" style={styles.navItem}>
