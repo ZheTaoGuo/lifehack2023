@@ -43,7 +43,7 @@ Allows tourists to write and share reviews about local attractions that they hav
 - [JDK > 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
 - [Android Studio and Android SDK](https://developer.android.com/studio)
 
-## Usage
+## Setup
 
 ### Using React-Native
 
