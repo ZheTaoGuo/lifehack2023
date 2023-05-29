@@ -597,63 +597,52 @@ function OldTree() {
       </View>
       <Image style={styles.tinyLogo} source={require("../assets/tree.png")} /> */}
 
-    <View style={styles.container}>
-    <View>
-      <Text style={{fontSize: 30, fontWeight:'600'}}>Itinery</Text>
-      <Text style={styles.welcomeMessage}>Your 3D2N trip</Text>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.card}>
+          <Text
+            style={{
+              fontSize: "24px",
+              marginBottom: "8px",
+              fontWeight: "500",
+            }}
+          >
+            Activity
+          </Text>
+          <FlatList
+            data={activities}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
+          <Button
+            onPress={btnHandle}
+            title="View More"
+            accessibilityLabel="Learn more about this purple button"
+          />
+        </View>
+        <Text
+          style={{
+            fontSize: "24px",
+            marginBottom: "8px",
+            marginTop: "16px",
+            fontWeight: "500",
+          }}
+        >
+          Leaderboard
+        </Text>
+        <View style={styles.card}>
+          <FlatList
+            data={leaderBoard}
+            renderItem={renderLeaderItem}
+            keyExtractor={(item) => item.id}
+          />
+          <Button
+            onPress={btnHandle}
+            title="View More"
+            accessibilityLabel="Learn more about this purple button"
+          />
+        </View>
+        <View style={styles.space}></View>
+      </SafeAreaView>
     </View>
-
-    <DragAndDrop/>
-
-    <View style={styles.card}>
-      <Text
-        style={{
-          fontSize: "24px",
-          marginBottom: "8px",
-          fontWeight: "500",
-        }}
-      >Day 1
-      </Text>
-    <FlatList
-        data={activities}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
-          </View>
-
-          <View style={styles.card}>
-      <Text
-        style={{
-          fontSize: "24px",
-          marginBottom: "8px",
-          fontWeight: "500",
-        }}
-      >Day 2
-      </Text>
-    <FlatList
-        data={activities}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
-          </View>
-
-          <View style={styles.card}>
-      <Text
-        style={{
-          fontSize: "24px",
-          marginBottom: "8px",
-          fontWeight: "500",
-        }}
-      >Day 3
-      </Text>
-    <FlatList
-        data={activities}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
-          </View>
-
-    </View>
-    </SafeAreaView>
-  )
+  );
 }
