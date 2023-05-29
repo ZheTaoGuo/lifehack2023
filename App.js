@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faMapLocationDot,
   faUser,
-  faClipboardCheck,
-  faTicket,
-  faComment
+  faHandshakeAngle,
+  faTree,
+  faSackDollar,
 } from "@fortawesome/free-solid-svg-icons";
 import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -19,9 +19,8 @@ import Profile from "./pages/Profile";
 import Redeem from "./pages/Redeem";
 import Activity from "./pages/activity";
 import RedeemDetail from "./pages/RedeemDetail"
-import ForumDetail from "./pages/ForumDetail";
-import Forum from "./pages/Forum"
-import InputDetail from "./pages/InputDetail"
+import FundsDetail from "./pages/FundsDetail";
+import Airlines from "./pages/airlines";
 
 export default function App() {
   const [navIndex, setNavIndex] = useState(0);
@@ -44,8 +43,9 @@ export default function App() {
 
             <Route path="/redeem" element={<Redeem />} />
             <Route path="/redeem/:slug" element={<RedeemDetail />} />
-            <Route path="/forum/:slug" element={<ForumDetail />} />
-            <Route path="/forum/inputdetail" element={<InputDetail />} />
+            {/* <Route path="/funds/:slug" element={<FundsDetail />} /> */}
+            <Route path="/airlines" element={<Airlines />} />
+            <Route path="/qrCode" component={<QRCodePage />} />
           </Routes>
 
         </ScrollView>
@@ -70,8 +70,8 @@ export default function App() {
           </Link>
           <Link to="/forum" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(3) } underlayColor="#f0f4f7" style={styles.navItem}>
             <View style={styles.subNavItem}>
-              <FontAwesomeIcon style={styles.navIcon} icon={faComment} color={navIndex === 3 ? "#0000CD" : "rgba(0, 0, 0, 0.3)"} />
-              <Text style={navIndex === 3 ? styles.navItemSelectedText : styles.navItemText}>Forum</Text>
+              <FontAwesomeIcon style={styles.navIcon} icon={faSackDollar} color={navIndex === 2 ? "#2fac97" : "rgba(0, 0, 0, 0.3)"} />
+              <Text style={navIndex === 2 ? styles.navItemSelectedText : styles.navItemText}>Funds</Text>
             </View>
           </Link>
           <Link to="/profile" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(4) } underlayColor="#f0f4f7" style={styles.navItem}>
