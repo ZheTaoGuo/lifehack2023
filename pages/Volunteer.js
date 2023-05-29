@@ -22,27 +22,27 @@ const SCREEN_WIDTH = Dimensions.get("window").width;
 const Attractions = [
   {
     id: "1",
-    uri: require("../assets/uss.jpg"),
-    title: "Universal Studios Singapore",
-    tag: ["Theme Park"],
-  },
-  {
-    id: "2",
-    uri: require("../assets/willdwildwet.jpg"),
+    uri: require("../assets/WildWildWet.jpg"),
     title: "Wild Wild Wet",
     tag: ["Theme Park"],
   },
   {
+    id: "2",
+    uri: require("../assets/SingaporeZoo.jpg"),
+    title: "Singapore Zoo",
+    tag: ["Wildlife Attractions"],
+  },
+  {
     id: "3",
-    uri: require("../assets/seaAquarium.jpg"),
+    uri: require("../assets/seaaquarium.jpg"),
     title: "S.E.A Aquarium",
     tag: ["Wildlife Attractions"],
   },
   {
     id: "4",
-    uri: require("../assets/zoo.jpg"),
-    title: "Zoo",
-    tag: ["Wildlife Attractions"],
+    uri: require("../assets/uss.jpg"),
+    title: "Universal Studios Singapore",
+    tag: ["Theme Park"],
   },
   {
     id: "5",

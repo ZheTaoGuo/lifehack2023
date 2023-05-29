@@ -14,9 +14,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import Tree from "./pages/Itinerary";
 import Volunteer from "./pages/Volunteer";
-import Redeem from "./pages/Redeem";
 import Activity from "./pages/activity";
-import RedeemDetail from "./pages/RedeemDetail"
 import ForumDetail from "./pages/ForumDetail";
 import Forum from "./pages/Forum"
 import InputDetail from "./pages/InputDetail"
@@ -40,8 +38,6 @@ export default function App() {
             <Route path="/forum" element={<Forum/>} />
             <Route path="/activity" element={<Activity />} />
             <Route path="/airlines" element={<Airlines />} />
-            <Route path="/redeem" element={<Redeem />} />
-            <Route path="/redeem/:slug" element={<RedeemDetail />} />
             <Route path="/forum/:slug" element={<ForumDetail />} />
             <Route path="/forum/inputdetail" element={<InputDetail />} />
             <Route path="/airlines/qrCode" element={<AirlinesQR />} />

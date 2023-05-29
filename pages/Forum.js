@@ -19,7 +19,7 @@ const reviews = [
     user: "John Doe",
     tag: ["Theme Park"],
     date: "18 May",
-    review: "It was a pleasant experience for my family. The view was amazing.",
+    review: "It was a pleasant experience for me. The view was amazing.",
     image: require("../assets/profile.png"),
   },
   {
@@ -35,7 +35,7 @@ const reviews = [
     user: "Sarah Ho",
     tag: ["Observation Deck"],
     date: "20 May",
-    review: "It was a horrible experience for my family. The observation deck was terrible",
+    review: "It was a horrible experience for my family. The observation deck was terrible.",
     image: require("../assets/profile.png"),
   },
   {
@@ -43,7 +43,7 @@ const reviews = [
     user: "Sarah Jane",
     tag: ["Observation Deck"],
     date: "20 May",
-    review: "It was a very good experience for my family. The view was great!",
+    review: "It was a very good experience for my family. The view was great and relaxing!",
     image: require("../assets/profile.png"),
   },
   {
@@ -212,6 +212,12 @@ const styles = StyleSheet.create({
     boxShadow: "0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)",
     display: "flex",
     gap: 15,
+    borderWidth: 1,
+    borderColor: "black",
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
 
   itemAvatar: {

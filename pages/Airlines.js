@@ -17,7 +17,7 @@ const windowWidth = Dimensions.get("window").width;
 const temp = [
   {
     name: "Singapore Airlines",
-    image: require("../assets/sqAirlinesLogo.png"),
+    image: require("../assets/sqlogo.png"),
     shops: [{ name: "Art Science Museum" }, { name: "S.E.A. Aquarium" }],
   },
   {
@@ -36,7 +36,7 @@ const temp = [
   },
   {
     name: "Cathay Pacific",
-    image: require("../assets/cathayPacificLogo.jpg"),
+    image: require("../assets/cathaypacific.jpg"),
     shops: [{ name: "Wild Wild Wet" }, { name: "iFly Singapore" }],
   },
 ];
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     padding: 20,
     margin: 10,
     gap: 10,
+    borderRadius: 10
   },
   airlineContainer: {
     width: "100%",
@@ -113,10 +114,11 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   logo: {
-    width: 60,
-    height: 60,
-    borderRadius: 10,
+    width: 70,
+    height: 70,
+    borderRadius: 5,
     marginLeft: 20,
+    backgroundColor: "white"
   },
   airlineName: {
     fontSize: 20,
@@ -137,6 +139,7 @@ const styles = StyleSheet.create({
   },
   shopName: {
     color: "white",
-    fontWeight: "bold",
+    fontSize: "1.25rem",
+    padding: "10"
   },
 });

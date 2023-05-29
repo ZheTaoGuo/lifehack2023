@@ -391,11 +391,18 @@ const styles = StyleSheet.create({
   card: {
     padding: "1.5rem",
     paddingTop: "1rem",
-    borderRadius: 8,
+    borderRadius: 10,
     backgroundColor: "white",
     boxShadow: "0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)",
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "black",
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+
   },
   space: {
     margin: "1rem",
