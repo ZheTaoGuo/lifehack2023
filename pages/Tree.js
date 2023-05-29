@@ -162,70 +162,113 @@ const LeaderItem = ({ item }) => {
   );
 };
 
-// const DragAndDrop = () => {
-//   const [widgets, setWidgets] = useState([]);
-//   const [activeWidget, setActiveWidget] = useState({
-//       title: "Universal Studios Singapore",
-//       image_url: require("../assets/uss.jpg"),
-//       activity_type: "Theme park",
-//       location: "Singapore"
-//   });
+// const TodoList = () => {
+//   const [text, setText] = useState("");
+//   const [data, setData] = useState([]);
 
-//   function handleOnDrag(e, widgetType) {
-//     // e.dataTransfer.setData("widgetType", widgetType);
-//     e.dataTransfer.setData(widgetType);
-//   }
+//   const handleTextInput = (input) => {
+//     setText(input);
+//   };
 
-//   function handleOnDrop(e) {
-//     // const widgetType = e.dataTransfer.getData("widgetType");
-//     const widgetType = e.dataTransfer.getData();
-//     console.log("widgetType", widgetType);
-//     setWidgets([...widgets, widgetType]);
-//     console.log(widgets)
-//   }
+//   const handleAddTodo = () => {
+//     // get the current text value
+//     const todo = text.trim();
+//     if (!todo) return;
+//     // generate unique key id
+//     const key = uuidv4();
+//     // add new todo with the unique key we generated
+//     setData((prevData) => {
+//       const newItem = {
+//         key,
+//         todo,
+//         isCompleted: false,
+//       };
+//       return [newItem, ...prevData];
+//     });
+//     // reset the input field
+//     setText("");
+//   };
+
+//   const renderItem = ({ item }) => {
+//     return <Item item={item} />;
+//   };
+
+//   return (
+//     <View>
+//       <TextInput
+//         style={styles.input}
+//         onChangeText={handleTextInput}
+//         value={text}
+//         onSubmitEditing={handleAddTodo}
+//         outline
+//       />
+
+//       <DraggableFlatList
+//         data={data}
+//         onDragEnd={({ data }) => setData(data)}
+//         keyExtractor={(item) => item.key}
+//         renderItem={renderItem}
+//       />
+//     </View>    
+//   );
+// };
+
+const DragAndDrop = () => {
+  const [widgets, setWidgets] = useState([]);
+
+  function handleOnDrag(e, widgetType) {
+    e.dataTransfer.setData("widgetType", widgetType);
+  }
+
+  function handleOnDrop(e) {
+    const widgetType = e.dataTransfer.getData("widgetType");
+    console.log("widgetType", widgetType);
+    setWidgets([...widgets, widgetType]);
+    console.log(widgets)
+  }
   
-//   function handleDragOver(e) {
-//     e.preventDefault()
-//   }
+  function handleDragOver(e) {
+    e.preventDefault()
+  }
 
-//   return(
-//     <div style={{display:"flex", flexDirection:"row",}}>
-//     <div className="widgets">
-//       <div
-//         className="widget"
-//         draggable
-//         onDragStart={(e) => handleOnDrag(e, "Widget A")}
-//         style={{backgroundColor:"blue"}}
-//       >
-//         Widget A
-//       </div>
-//       <div
-//         className="widget"
-//         draggable
-//         onDragStart={(e) => handleOnDrag(e, "Widget B")}
-//       >
-//         Widget B
-//       </div>
-//       <div
-//         className="widget"
-//         draggable
-//         onDragStart={(e) => handleOnDrag(e, "Widget C")}
-//       >
-//         Widget C
-//       </div>
-//     </div>
-//     <div className="page" onDrop={handleOnDrop} onDragOver={handleDragOver} style={{border:"black", height:"150px", width:"150px"}}>
-//       {widgets.map((widget, index) => {
-//         return(
-//         <div className="dropped-widget" key={index}>
-//           {widget}
-//         </div>
-//         )
-//       })}  
-//     </div>
-//     </div>
-//   )
-// }
+  return(
+    <div style={{display:"flex", flexDirection:"row",}}>
+    <div className="widgets">
+      <div
+        className="widget"
+        draggable
+        onDragStart={(e) => handleOnDrag(e, "Widget A")}
+        style={{backgroundColor:"blue"}}
+      >
+        Widget A
+      </div>
+      <div
+        className="widget"
+        draggable
+        onDragStart={(e) => handleOnDrag(e, "Widget B")}
+      >
+        Widget B
+      </div>
+      <div
+        className="widget"
+        draggable
+        onDragStart={(e) => handleOnDrag(e, "Widget C")}
+      >
+        Widget C
+      </div>
+    </div>
+    <div className="page" onDrop={handleOnDrop} onDragOver={handleDragOver} style={{border:"black", height:"150px", width:"150px"}}>
+      {widgets.map((widget, index) => {
+        return(
+        <div className="dropped-widget" key={index}>
+          {widget}
+        </div>
+        )
+      })}  
+    </div>
+    </div>
+  )
+}
 
 export default function Tree() {
   const [widgets1, setWidgets1] = useState([]);
@@ -251,232 +294,64 @@ export default function Tree() {
     navigate("/redeem");
   };
 
-  function handleOnDrag(e, widgetType) {
-    const widgetTypeJSON = JSON.stringify(widgetType)
-    e.dataTransfer.setData("widgetType", widgetTypeJSON);
-  }
-
-  // function handleOnDrop(e, num) {
-  //   const widgets = widgets1
-  //   const setWidgets = setWidgets1
-
-  //   switch(num) {
-  //     case 1:
-  //       const widgets = widgets1
-  //       const setWidgets = setWidgets1
-  //   }
-  //   const widgetTypeJSON = e.dataTransfer.getData("widgetType");
-  //   const widgetType = JSON.parse(widgetTypeJSON)
-  //   console.log("widgetType", widgetType);
-  //   setWidgets([...widgets, widgetType]);
-  //   const removedActivity = activities.filter(function(activity){
-  //     return activity.title!= widgetType.title
-  //   })
-  //   console.log(removedActivity)
-  //   setActivities(removedActivity)
-  // }
-
-  function handleOnDrop1(e) {
-    const widgetTypeJSON = e.dataTransfer.getData("widgetType");
-    const widgetType = JSON.parse(widgetTypeJSON)
-    console.log("widgetType", widgetType);
-    setWidgets1([...widgets1, widgetType]);
-    const removedActivity = activities.filter(function(activity){
-      return activity.title!= widgetType.title
-    })
-    console.log(removedActivity)
-    setActivities(removedActivity)
-  }
-
-  function handleOnDrop2(e) {
-    const widgetTypeJSON = e.dataTransfer.getData("widgetType");
-    const widgetType = JSON.parse(widgetTypeJSON)
-    console.log("widgetType", widgetType);
-    setWidgets2([...widgets2, widgetType]);
-    const removedActivity = activities.filter(function(activity){
-      return activity.title!= widgetType.title
-    })
-    console.log(removedActivity)
-    setActivities(removedActivity)
-  }
-
-  function handleOnDrop3(e) {
-    const widgetTypeJSON = e.dataTransfer.getData("widgetType");
-    const widgetType = JSON.parse(widgetTypeJSON)
-    console.log("widgetType", widgetType);
-    setWidgets3([...widgets3, widgetType]);
-    const removedActivity = activities.filter(function(activity){
-      return activity.title!= widgetType.title
-    })
-    console.log(removedActivity)
-    setActivities(removedActivity)
-  }
-  
-  function handleDragOver(e) {
-    e.preventDefault()
-  }
-
   return(
     <SafeAreaView style={styles.container}>
 
     <View style={styles.container}>
     <View>
       <Text style={{fontSize: 30, fontWeight:'600'}}>Itinery</Text>
-      {/* <Text style={styles.welcomeMessage}>Your 3D2N trip</Text> */}
+      <Text style={styles.welcomeMessage}>Your 3D2N trip</Text>
     </View>
 
-    {/* <DragAndDrop/> */}
-    
-    <Text style={styles.standardText}>Drag and drop your acitivies to plan your 
-      <Text style={styles.boldText}> 3D2N</Text> stay at
-      <Text style={styles.boldText}> Singapore</Text>
-    </Text>
+    <DragAndDrop/>
 
-    <View style={styles.activitiesContainer}>
-    <Text style={styles.sectionTitle}>Activities</Text>
-    <View style={styles.widgetsContainer}>
-      {activities.map((activity) => {
-          return(
-            <div
-              draggable
-              onDragStart={(e) => handleOnDrag(e, activity)}
-            >
-          <View style={styles.item}>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "16px",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              style={styles.itemProfile}
-              source={activity.image_url}
-            />
-            <View>
-              <Text style={styles.title}>{activity.title}</Text>
-              <Text style={styles.itemDesc}>{activity.activity_type}</Text>
-            </View>
-            <View style={ma}>
-
-            </View>
-          </View>
-        </View>
-            </div>
-          )
-        })}  
-    </View>
-    </View>
-
-<View style={styles.standardContainer}>
-    <div onDrop={handleOnDrop1} onDragOver={handleDragOver}>
     <View style={styles.card}>
       <Text
-        style={styles.sectionTitle}
+        style={{
+          fontSize: "24px",
+          marginBottom: "8px",
+          fontWeight: "500",
+        }}
       >Day 1
       </Text>
-
-        {/* <FlatList
-          data={widgets}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        /> */}
-        {widgets1.map((widget, index) => {
-        return(
-          <View style={styles.item}>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "16px",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              style={styles.itemProfile}
-              source={widget.image_url}
-            />
-            <View>
-              <Text style={styles.title}>{widget.title}</Text>
-              <Text style={styles.itemDesc}>{widget.activity_type}</Text>
-              <Text style={styles.itemDesc}>{widget.location}</Text>
-            </View>
+    <FlatList
+        data={activities}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
           </View>
-        </View>
-        )
-      })}  
 
-    </View>
-    </div>
-
-    <div onDrop={handleOnDrop2} onDragOver={handleDragOver}>
-    <View style={styles.card}>
+          <View style={styles.card}>
       <Text
-        style={styles.sectionTitle}
+        style={{
+          fontSize: "24px",
+          marginBottom: "8px",
+          fontWeight: "500",
+        }}
       >Day 2
       </Text>
-      {widgets2.map((widget, index) => {
-        return(
-          <View style={styles.item}>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "16px",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              style={styles.itemProfile}
-              source={widget.image_url}
-            />
-            <View>
-              <Text style={styles.title}>{widget.title}</Text>
-              <Text style={styles.itemDesc}>{widget.activity_type}</Text>
-              <Text style={styles.itemDesc}>{widget.location}</Text>
-            </View>
+    <FlatList
+        data={activities}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
           </View>
-        </View>
-        )
-      })}  
-    </View>
-    </div>
 
-    <div onDrop={handleOnDrop3} onDragOver={handleDragOver}>
-    <View style={styles.card}>
+          <View style={styles.card}>
       <Text
-        style={styles.sectionTitle}
+        style={{
+          fontSize: "24px",
+          marginBottom: "8px",
+          fontWeight: "500",
+        }}
       >Day 3
       </Text>
-      {widgets3.map((widget, index) => {
-        return(
-          <View style={styles.item}>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "16px",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              style={styles.itemProfile}
-              source={widget.image_url}
-            />
-            <View>
-              <Text style={styles.title}>{widget.title}</Text>
-              <Text style={styles.itemDesc}>{widget.activity_type}</Text>
-              <Text style={styles.itemDesc}>{widget.location}</Text>
-            </View>
+    <FlatList
+        data={activities}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
           </View>
-        </View>
-        )
-      })}    
-    </View>
-    </div>
-
-    </View>
 
     </View>
     </SafeAreaView>
@@ -553,8 +428,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: "white",
     boxShadow: "0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)",
-    marginTop: 10,
-    marginBottom: 10
+    marginTop: 20
   },
   space: {
     margin: "1rem",
@@ -613,3 +487,90 @@ const styles = StyleSheet.create({
     width: 64,
   },
 });
+
+function OldTree() {
+  const navigate = useNavigate();
+
+  const btnHandle = () => {
+    console.log("btn pressed");
+  };
+
+  const renderItem = ({ item }) => {
+    return <Item item={item} />;
+  };
+
+  const renderLeaderItem = ({ item }) => {
+    return <LeaderItem item={item} />;
+  };
+
+  const navigateToContacts = () => {
+    navigate("/redeem");
+  };
+
+  return (
+    <View style={{ position: "relative", backgroundColor: "#f5f6f7" }}>
+      {/* <View style={styles.pointContainer}>
+        <Text style={styles.welcomeMessage}>Itinery</Text>
+      </View>
+      <View style={styles.btnContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={navigateToContacts}
+        >
+          <Image
+            style={styles.imagebtn}
+            source={require("../assets/donationBtn_50.png")}
+          />
+        </TouchableOpacity>
+      </View>
+      <Image style={styles.tinyLogo} source={require("../assets/tree.png")} /> */}
+
+      <SafeAreaView style={styles.container}>
+        <View style={styles.card}>
+          <Text
+            style={{
+              fontSize: "24px",
+              marginBottom: "8px",
+              fontWeight: "500",
+            }}
+          >
+            Activity
+          </Text>
+          <FlatList
+            data={activities}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
+          <Button
+            onPress={btnHandle}
+            title="View More"
+            accessibilityLabel="Learn more about this purple button"
+          />
+        </View>
+        <Text
+          style={{
+            fontSize: "24px",
+            marginBottom: "8px",
+            marginTop: "16px",
+            fontWeight: "500",
+          }}
+        >
+          Leaderboard
+        </Text>
+        <View style={styles.card}>
+          <FlatList
+            data={leaderBoard}
+            renderItem={renderLeaderItem}
+            keyExtractor={(item) => item.id}
+          />
+          <Button
+            onPress={btnHandle}
+            title="View More"
+            accessibilityLabel="Learn more about this purple button"
+          />
+        </View>
+        <View style={styles.space}></View>
+      </SafeAreaView>
+    </View>
+  );
+}
