@@ -14,14 +14,14 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-native";
 
 const activities = {
-  title: "Help Children",
-  tag: ["Children"],
+  title: "Singapore Zoo",
+  tag: ["Wildlife Attractions"],
   image: "url",
-  description: "In post mean shot ye. There out her child sir his lived. Design at uneasy me season of branch on praise esteem. Abilities discourse believing consisted remaining to no. Mistaken no me denoting dashwood as screened. Whence or esteem easily he on. Dissuade husbands at of no if disposal.",
+  description: "Singapore Zoo is a 26-hectare wildlife park. ",
   activitystate: true,
   Date: "12/03/22",
-  Time: "12pm",
-  Venue: "Unicef Donation Centre",
+  Time: "9am - 7pm",
+  Venue: " Mandai Lake Rd, Singapore 729826",
 };
 
 export default function Activity() {
@@ -43,13 +43,13 @@ export default function Activity() {
         <TouchableOpacity style={styles.backBtn} onPress={navigateBack}>
           <FontAwesomeIcon icon={faAngleLeft} size={24} />
         </TouchableOpacity>
-        <Text style={styles.headerText}>Event Detail</Text>
+        <Text style={styles.headerText}>Attraction Detail</Text>
       </View>
 
       <SafeAreaView>
         <Image
           style={styles.itemProfile}
-          source={require("../assets/accompanyingelderly.png")}
+          source={require("../assets/zoo.jpg")}
         />
 
         <View style={styles.activityContainer}>
@@ -174,7 +174,7 @@ export default function Activity() {
             disabled={registered}
           >
             <Text style={{ color: "white", fontSize: "1.25rem" }}>
-              {registered ? "Registered" : "Register Now"}
+              {registered ? "Added to Itinerary" : "Add to Itinerary"}
             </Text>
           </Pressable>
         ) : (
@@ -183,7 +183,7 @@ export default function Activity() {
             onPress={() => setModalVisible(true)}
           >
             <Text style={{ color: "white", fontSize: "1.25rem" }}>
-              You have already registered!
+              You have already added it to your itinerary!
             </Text>
           </View>
         )}
@@ -200,7 +200,7 @@ export default function Activity() {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>
-              You have successfully registered!
+              You have successfully added it to your itinerary!
             </Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
