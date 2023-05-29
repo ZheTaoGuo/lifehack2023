@@ -265,7 +265,7 @@ class VolunteerDetail extends React.Component {
                   bottom: 10,
                   padding: 15,
                   width: "100%",
-                  fontSize: 10,
+                  fontSize: 32,
                   fontWeight: 600,
                   color: "white",
                   textShadow: "2px 4px 3px rgba(0,0,0,0.3)",
@@ -280,7 +280,7 @@ class VolunteerDetail extends React.Component {
                   top: 10,
                   padding: 15,
                   width: "100%",
-                  fontSize: 10,
+                  fontSize: 32,
                   display: "flex",
                 }}
               >
@@ -354,6 +354,7 @@ class VolunteerDetail extends React.Component {
                   fontSize: 32,
                   fontWeight: "800",
                   padding: 10,
+                  
                 }}
               >
                 LIKE
@@ -399,10 +400,13 @@ class VolunteerDetail extends React.Component {
                 position: "absolute",
                 bottom: 10,
                 padding: 15,
-                fontSize: "1.5rem",
+                // fontSize: "1.5rem",
                 textAlign: "right",
                 right: 20,
-                color: "white"
+                fontSize: 32,
+                fontWeight: 600,
+                color: "white",
+                textShadow: "2px 4px 3px rgba(0,0,0,0.3)",
               }}
             >
               <FontAwesomeIcon icon={faShareNodes} size={32} color={"#fff"}/>
@@ -424,7 +428,7 @@ class VolunteerDetail extends React.Component {
                 top: 10,
                 padding: 15,
                 width: "100%",
-                fontSize: "1.5rem",
+                fontSize: 32,
                 display: "flex",
                 fontWeight: 600,
                 textShadow: "2px 4px 3px rgba(0,0,0,0.3)",
@@ -441,7 +445,10 @@ class VolunteerDetail extends React.Component {
                       padding: 6,
                       borderRadius: 4,
                       backgroundColor: "#00997F",
-                      fontSize: "1rem"
+                      fontSize: 32,
+                      fontWeight: 600,
+                      color: "white",
+                      textShadow: "2px 4px 3px rgba(0,0,0,0.3)",
                     }}
                     key={key}
                   >
