@@ -1,56 +1,66 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
   SafeAreaView,
   Image,
-  TouchableOpacity, TextInput, Pressable, Modal, Button
+  TouchableOpacity,
+  TextInput,
+  Pressable,
+  Modal,
+  Button,
 } from "react-native";
 import { useNavigate } from "react-router-native";
 
 const reviews = [
   {
+    attraction: "Universal Studios Singapore",
     user: "John Doe",
-    tag: ["John"],
+    tag: ["Theme Park"],
     date: "18 May",
     review: "It was a pleasant experience for my family. The view was great",
-    image: "url",
+    image: require("../assets/profile.png"),
   },
   {
+    attraction: "Resorts World Sentosa",
     user: "John Tom",
-    tag: ["Tom"],
+    tag: ["Theme Park"],
     date: "19 May",
     review: "It was a bad experience for my family. The view was great",
-    image: "url",
+    image: require("../assets/profile.png"),
   },
   {
+    attraction: "Singapore Flyer",
     user: "Sarah Tom",
-    tag: ["Sarah"],
+    tag: ["Observation Deck"],
     date: "20 May",
     review: "It was a horrible experience for my family. The view was great",
-    image: "url",
+    image: require("../assets/profile.png"),
   },
   {
+    attraction: "Singapore Flyer",
     user: "Jimmy Tom",
-    tag: ["Jimmy"],
+    tag: ["Observation Deck"],
     date: "20 May",
     review: "It was a bad experience for my family. The view was great",
-    image: "url",
+    image: require("../assets/profile.png"),
   },
   {
+    attraction: "Universal Studios Singapore",
     user: "Jimmy Tom",
-    tag: ["Jimmy"],
+    tag: ["Theme Park"],
     date: "20 May",
     review: "It was a bad experience for my family. The view was great",
-    image: "url",
+    image: require("../assets/profile.png"),
   },
   {
+    attraction: "Universal Studios Singapore",
     user: "Jimmy Tom",
-    tag: ["Jimmy"],
+    tag: ["Theme Park"],
     date: "20 May",
     review: "It was a bad experience for my family. The view was great",
-    image: "url",
+    image: require("../assets/profile.png"),
   },
 ];
 
@@ -60,6 +70,7 @@ export default function Forum() {
     navigate("/forum/detail");
   };
   const navigateTwo = useNavigate();
+
   const navigateReview = () => {
     navigateTwo("/forum/inputdetail");
   };
@@ -73,49 +84,80 @@ export default function Forum() {
         <View style={styles.redeemContainer}>
           {reviews.map((index, key) => {
             return (
-              
               <TouchableOpacity
                 style={styles.item}
                 key={key}
                 onPress={navigateDetail}
               >
                 <View style={styles.card}>
-                  <Text style={styles.itemTitle}>{index.user}</Text>
+                  <View style={{ display: "flex", gap: 3}}>
+                  <Text style={{ fontWeight: 800, color: "black", fontSize: 20 }}>{index.attraction}</Text>
+                  {index.tag.map((t, key) => {
+                      return (
+                        <Text
+                          style={{
+                            display: "inline-block",
+                            width: "fit-content",
+                            color: "white",
+                            padding: 4,
+                            borderRadius: 4,
+                            backgroundColor: "#00997F",
+                          }}
+                          key={key}
+                        >
+                          {t}
+                        </Text>
+                      );
+                    })}
+                    </View>
+                  <View style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 15,
+                  }}>
+                    <Image
+                      style={styles.itemAvatar}
+                      source={index.image}
+                    ></Image>
+                    <View>
+                      <Text style={{ fontWeight: 500, color: "black" }}>
+                        {index.user}
+                      </Text>
+                      <Text style={{ fontWeight: 500, color: "grey" }}>
+                        {index.date}
+                      </Text>
+                    </View>
+                  </View>
 
-                  <Text style={{ fontWeight: 800, color: "black" }}>
-                      {index.date}
-                    </Text>
-                    <Text style={{ fontWeight: 500, color: "black" }}>
-                      {index.review}
-                    </Text>
+                  <Text style={{ fontWeight: 500, color: "black" }}>
+                    {index.review}
+                  </Text>
                   <View
-                    style={{ display: "flex", flexDirection: "column", gap: 8 }}
+                    style={{ display: "flex", flexDirection: "row", gap: 8 }}
                   >
                     <Image
                       style={styles.itemProfile}
-                      source={require("../assets/donate_1.jpg")}
+                      source={require("../assets/uss.jpg")}
                     ></Image>
 
                     <Image
                       style={styles.itemProfile}
-                      source={require("../assets/donate_1.jpg")}
+                      source={require("../assets/rws.jpg")}
                     ></Image>
                   </View>
-              </View>
+                </View>
               </TouchableOpacity>
-        );
+            );
           })}
 
           <View style={styles.reviewContainer}>
-          <Pressable
-          style={styles.donateBtn}
-          onPressIn={navigateReview}
-        >
-          <Text style={{ color: "white", fontSize: "1.25rem", padding: "10"}}>
-            Enter Review
-          </Text>
-
-          </Pressable>
+            <Pressable style={styles.donateBtn} onPressIn={navigateReview}>
+              <Text
+                style={{ color: "white", fontSize: "1.25rem", padding: "10" }}
+              >
+                Enter Review
+              </Text>
+            </Pressable>
           </View>
         </View>
       </SafeAreaView>
@@ -149,14 +191,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "flex-start",
-    width: "100%"
+    width: "100%",
   },
   reviewContainer: {
     flex: 1,
-    flexDirection :"row",
+    flexDirection: "row",
     flexWrap: "wrap",
     padding: 10,
-    paddingBottom: 10,
+    paddingBottom: 30,
   },
   item: {
     width: "50%",
@@ -168,12 +210,18 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     boxShadow: "0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)",
     display: "flex",
-    gap: 5,
+    gap: 15,
+  },
+
+  itemAvatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 10,
   },
 
   itemProfile: {
-    width: "100%",
-    height: 100,
+    width: 250,
+    height: "100%",
     padding: 50,
   },
   itemTitle: {
@@ -245,6 +293,6 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     width: "100%",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 });
