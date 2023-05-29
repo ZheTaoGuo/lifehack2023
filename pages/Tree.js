@@ -19,19 +19,19 @@ import DraggableFlatList from 'react-native-draggable-flatlist';
 
 const leaderBoard = [
   {
-    profile: "url",
+    profile: require("../assets/uss.jpg"),
     username: "Chen Yun",
     certCount: 8,
     point: 321,
   },
   {
-    profile: "url",
+    profile: require("../assets/rws.jpg"),
     username: "Num Two",
     certCount: 5,
     point: 213,
   },
   {
-    profile: "url",
+    profile: require("../assets/sgFlyer.jpg"),
     username: "Num Three",
     certCount: 3,
     point: 123,
@@ -41,19 +41,37 @@ const leaderBoard = [
 const activityList = [
   {
     title: "Universal Studios Singapore",
-    image_url: "",
+    image_url: require("../assets/uss.jpg"),
     activity_type: "Theme park",
     location: "Singapore"
   },
   {
     title: "Gardens by the Bay",
-    image_url: "",
+    image_url: require("../assets/rws.jpg"),
     activity_type: "Gardens & parks",
     location: "Singapore"
   },
   {
     title: "Singapore Flyer",
-    image_url: "",
+    image_url: require("../assets/sgFlyer.jpg"),
+    activity_type: "Observation deck",
+    location: "Singapore"
+  },
+  {
+    title: "Singapore Flyer",
+    image_url: require("../assets/sgFlyer.jpg"),
+    activity_type: "Observation deck",
+    location: "Singapore"
+  },
+  {
+    title: "Singapore Flyer",
+    image_url: require("../assets/sgFlyer.jpg"),
+    activity_type: "Observation deck",
+    location: "Singapore"
+  },
+  {
+    title: "Singapore Flyer",
+    image_url: require("../assets/sgFlyer.jpg"),
     activity_type: "Observation deck",
     location: "Singapore"
   },
@@ -144,62 +162,70 @@ const LeaderItem = ({ item }) => {
   );
 };
 
-const DragAndDrop = () => {
-  const [widgets, setWidgets] = useState([]);
+// const DragAndDrop = () => {
+//   const [widgets, setWidgets] = useState([]);
+//   const [activeWidget, setActiveWidget] = useState({
+//       title: "Universal Studios Singapore",
+//       image_url: require("../assets/uss.jpg"),
+//       activity_type: "Theme park",
+//       location: "Singapore"
+//   });
 
-  function handleOnDrag(e, widgetType) {
-    e.dataTransfer.setData("widgetType", widgetType);
-  }
+//   function handleOnDrag(e, widgetType) {
+//     // e.dataTransfer.setData("widgetType", widgetType);
+//     e.dataTransfer.setData(widgetType);
+//   }
 
-  function handleOnDrop(e) {
-    const widgetType = e.dataTransfer.getData("widgetType");
-    console.log("widgetType", widgetType);
-    setWidgets([...widgets, widgetType]);
-    console.log(widgets)
-  }
+//   function handleOnDrop(e) {
+//     // const widgetType = e.dataTransfer.getData("widgetType");
+//     const widgetType = e.dataTransfer.getData();
+//     console.log("widgetType", widgetType);
+//     setWidgets([...widgets, widgetType]);
+//     console.log(widgets)
+//   }
   
-  function handleDragOver(e) {
-    e.preventDefault()
-  }
+//   function handleDragOver(e) {
+//     e.preventDefault()
+//   }
 
-  return(
-    <div style={{display:"flex", flexDirection:"row",}}>
-    <div className="widgets">
-      <div
-        className="widget"
-        draggable
-        onDragStart={(e) => handleOnDrag(e, "Widget A")}
-        style={{backgroundColor:"blue"}}
-      >
-        Widget A
-      </div>
-      <div
-        className="widget"
-        draggable
-        onDragStart={(e) => handleOnDrag(e, "Widget B")}
-      >
-        Widget B
-      </div>
-      <div
-        className="widget"
-        draggable
-        onDragStart={(e) => handleOnDrag(e, "Widget C")}
-      >
-        Widget C
-      </div>
-    </div>
-    <div className="page" onDrop={handleOnDrop} onDragOver={handleDragOver} style={{border:"black", height:"150px", width:"150px"}}>
-      {widgets.map((widget, index) => {
-        return(
-        <div className="dropped-widget" key={index}>
-          {widget}
-        </div>
-        )
-      })}  
-    </div>
-    </div>
-  )
-}
+//   return(
+//     <div style={{display:"flex", flexDirection:"row",}}>
+//     <div className="widgets">
+//       <div
+//         className="widget"
+//         draggable
+//         onDragStart={(e) => handleOnDrag(e, "Widget A")}
+//         style={{backgroundColor:"blue"}}
+//       >
+//         Widget A
+//       </div>
+//       <div
+//         className="widget"
+//         draggable
+//         onDragStart={(e) => handleOnDrag(e, "Widget B")}
+//       >
+//         Widget B
+//       </div>
+//       <div
+//         className="widget"
+//         draggable
+//         onDragStart={(e) => handleOnDrag(e, "Widget C")}
+//       >
+//         Widget C
+//       </div>
+//     </div>
+//     <div className="page" onDrop={handleOnDrop} onDragOver={handleDragOver} style={{border:"black", height:"150px", width:"150px"}}>
+//       {widgets.map((widget, index) => {
+//         return(
+//         <div className="dropped-widget" key={index}>
+//           {widget}
+//         </div>
+//         )
+//       })}  
+//     </div>
+//     </div>
+//   )
+// }
 
 export default function Tree() {
   const [widgets1, setWidgets1] = useState([]);
@@ -226,43 +252,64 @@ export default function Tree() {
   };
 
   function handleOnDrag(e, widgetType) {
-    e.dataTransfer.setData("widgetType", widgetType);
+    const widgetTypeJSON = JSON.stringify(widgetType)
+    e.dataTransfer.setData("widgetType", widgetTypeJSON);
   }
 
+  // function handleOnDrop(e, num) {
+  //   const widgets = widgets1
+  //   const setWidgets = setWidgets1
+
+  //   switch(num) {
+  //     case 1:
+  //       const widgets = widgets1
+  //       const setWidgets = setWidgets1
+  //   }
+  //   const widgetTypeJSON = e.dataTransfer.getData("widgetType");
+  //   const widgetType = JSON.parse(widgetTypeJSON)
+  //   console.log("widgetType", widgetType);
+  //   setWidgets([...widgets, widgetType]);
+  //   const removedActivity = activities.filter(function(activity){
+  //     return activity.title!= widgetType.title
+  //   })
+  //   console.log(removedActivity)
+  //   setActivities(removedActivity)
+  // }
+
   function handleOnDrop1(e) {
-    const widgetType = e.dataTransfer.getData("widgetType");
+    const widgetTypeJSON = e.dataTransfer.getData("widgetType");
+    const widgetType = JSON.parse(widgetTypeJSON)
     console.log("widgetType", widgetType);
     setWidgets1([...widgets1, widgetType]);
     const removedActivity = activities.filter(function(activity){
-      return activity.title!= widgetType
+      return activity.title!= widgetType.title
     })
     console.log(removedActivity)
     setActivities(removedActivity)
-    console.log(widgets1)
   }
 
   function handleOnDrop2(e) {
-    const widgetType = e.dataTransfer.getData("widgetType");
+    const widgetTypeJSON = e.dataTransfer.getData("widgetType");
+    const widgetType = JSON.parse(widgetTypeJSON)
     console.log("widgetType", widgetType);
     setWidgets2([...widgets2, widgetType]);
     const removedActivity = activities.filter(function(activity){
-      return activity.title!= widgetType
+      return activity.title!= widgetType.title
     })
     console.log(removedActivity)
     setActivities(removedActivity)
-    console.log(widgets2)
   }
 
   function handleOnDrop3(e) {
-    const widgetType = e.dataTransfer.getData("widgetType");
+    const widgetTypeJSON = e.dataTransfer.getData("widgetType");
+    const widgetType = JSON.parse(widgetTypeJSON)
     console.log("widgetType", widgetType);
     setWidgets3([...widgets3, widgetType]);
     const removedActivity = activities.filter(function(activity){
-      return activity.title!= widgetType
+      return activity.title!= widgetType.title
     })
     console.log(removedActivity)
     setActivities(removedActivity)
-    console.log(widgets3)
   }
   
   function handleDragOver(e) {
@@ -291,9 +338,8 @@ export default function Tree() {
       {activities.map((activity) => {
           return(
             <div
-              className="widget"
               draggable
-              onDragStart={(e) => handleOnDrag(e, activity.title)}
+              onDragStart={(e) => handleOnDrag(e, activity)}
             >
           <View style={styles.item}>
           <View
@@ -306,11 +352,14 @@ export default function Tree() {
           >
             <Image
               style={styles.itemProfile}
-              source={require("../assets/tree.png")}
+              source={activity.image_url}
             />
             <View>
               <Text style={styles.title}>{activity.title}</Text>
               <Text style={styles.itemDesc}>{activity.activity_type}</Text>
+            </View>
+            <View style={ma}>
+
             </View>
           </View>
         </View>
@@ -346,11 +395,12 @@ export default function Tree() {
           >
             <Image
               style={styles.itemProfile}
-              source={require("../assets/tree.png")}
+              source={widget.image_url}
             />
             <View>
-              <Text style={styles.title}>{widget}</Text>
-              <Text style={styles.itemDesc}>Theme Park</Text>
+              <Text style={styles.title}>{widget.title}</Text>
+              <Text style={styles.itemDesc}>{widget.activity_type}</Text>
+              <Text style={styles.itemDesc}>{widget.location}</Text>
             </View>
           </View>
         </View>
@@ -379,11 +429,12 @@ export default function Tree() {
           >
             <Image
               style={styles.itemProfile}
-              source={require("../assets/tree.png")}
+              source={widget.image_url}
             />
             <View>
-              <Text style={styles.title}>{widget}</Text>
-              <Text style={styles.itemDesc}>Theme Park</Text>
+              <Text style={styles.title}>{widget.title}</Text>
+              <Text style={styles.itemDesc}>{widget.activity_type}</Text>
+              <Text style={styles.itemDesc}>{widget.location}</Text>
             </View>
           </View>
         </View>
@@ -411,16 +462,17 @@ export default function Tree() {
           >
             <Image
               style={styles.itemProfile}
-              source={require("../assets/tree.png")}
+              source={widget.image_url}
             />
             <View>
-              <Text style={styles.title}>{widget}</Text>
-              <Text style={styles.itemDesc}>Theme Park</Text>
+              <Text style={styles.title}>{widget.title}</Text>
+              <Text style={styles.itemDesc}>{widget.activity_type}</Text>
+              <Text style={styles.itemDesc}>{widget.location}</Text>
             </View>
           </View>
         </View>
         )
-      })}  
+      })}    
     </View>
     </div>
 
@@ -449,6 +501,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     gap: "20px",
+    flexWrap: "wrap",
   },
   standardContainer: {
     display: "flex",
@@ -456,7 +509,7 @@ const styles = StyleSheet.create({
     gap: "15px"
   },
   activitiesContainer: {
-    backgroundColor: "#D3D3D3",
+    backgroundColor: "#ADD8E6",
     borderRadius: 8,
     padding: "1.5rem",
     marginTop: 20,
@@ -507,7 +560,6 @@ const styles = StyleSheet.create({
     margin: "1rem",
   },
   item: {
-    marginVertical: 8,
     display: "flex",
     flexDirection: "row",
     gap: "16px",
@@ -517,7 +569,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: "1px",
     borderColor: "#e5e7eb",
     backgroundColor: "white",
-    borderRadius: 8
+    borderRadius: 8,
+    flexWrap: "wrap",
   },
   header: {
     fontSize: 32,
@@ -560,90 +613,3 @@ const styles = StyleSheet.create({
     width: 64,
   },
 });
-
-function OldTree() {
-  const navigate = useNavigate();
-
-  const btnHandle = () => {
-    console.log("btn pressed");
-  };
-
-  const renderItem = ({ item }) => {
-    return <Item item={item} />;
-  };
-
-  const renderLeaderItem = ({ item }) => {
-    return <LeaderItem item={item} />;
-  };
-
-  const navigateToContacts = () => {
-    navigate("/redeem");
-  };
-
-  return (
-    <View style={{ position: "relative", backgroundColor: "#f5f6f7" }}>
-      {/* <View style={styles.pointContainer}>
-        <Text style={styles.welcomeMessage}>Itinery</Text>
-      </View>
-      <View style={styles.btnContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={navigateToContacts}
-        >
-          <Image
-            style={styles.imagebtn}
-            source={require("../assets/donationBtn_50.png")}
-          />
-        </TouchableOpacity>
-      </View>
-      <Image style={styles.tinyLogo} source={require("../assets/tree.png")} /> */}
-
-      <SafeAreaView style={styles.container}>
-        <View style={styles.card}>
-          <Text
-            style={{
-              fontSize: "24px",
-              marginBottom: "8px",
-              fontWeight: "500",
-            }}
-          >
-            Activity
-          </Text>
-          <FlatList
-            data={activities}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-          />
-          <Button
-            onPress={btnHandle}
-            title="View More"
-            accessibilityLabel="Learn more about this purple button"
-          />
-        </View>
-        <Text
-          style={{
-            fontSize: "24px",
-            marginBottom: "8px",
-            marginTop: "16px",
-            fontWeight: "500",
-          }}
-        >
-          Leaderboard
-        </Text>
-        <View style={styles.card}>
-          <FlatList
-            data={leaderBoard}
-            renderItem={renderLeaderItem}
-            keyExtractor={(item) => item.id}
-          />
-          <Button
-            onPress={btnHandle}
-            title="View More"
-            accessibilityLabel="Learn more about this purple button"
-          />
-        </View>
-        <View style={styles.space}></View>
-      </SafeAreaView>
-    </View>
-  );
-}
