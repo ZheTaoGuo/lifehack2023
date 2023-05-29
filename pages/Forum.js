@@ -70,6 +70,7 @@ export default function Forum() {
     navigate("/forum/detail");
   };
   const navigateTwo = useNavigate();
+
   const navigateReview = () => {
     navigateTwo("/forum/inputdetail");
   };
@@ -89,7 +90,44 @@ export default function Forum() {
                 onPress={navigateDetail}
               >
                 <View style={styles.card}>
-                  <Text style={styles.itemTitle}>{index.user}</Text>
+                  <View style={{ display: "flex", gap: 3}}>
+                  <Text style={{ fontWeight: 800, color: "black", fontSize: 20 }}>{index.attraction}</Text>
+                  {index.tag.map((t, key) => {
+                      return (
+                        <Text
+                          style={{
+                            display: "inline-block",
+                            width: "fit-content",
+                            color: "white",
+                            padding: 4,
+                            borderRadius: 4,
+                            backgroundColor: "#00997F",
+                          }}
+                          key={key}
+                        >
+                          {t}
+                        </Text>
+                      );
+                    })}
+                    </View>
+                  <View style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 15,
+                  }}>
+                    <Image
+                      style={styles.itemAvatar}
+                      source={index.image}
+                    ></Image>
+                    <View>
+                      <Text style={{ fontWeight: 500, color: "black" }}>
+                        {index.user}
+                      </Text>
+                      <Text style={{ fontWeight: 500, color: "grey" }}>
+                        {index.date}
+                      </Text>
+                    </View>
+                  </View>
 
                   <Text style={{ fontWeight: 800, color: "black" }}>
                     {index.date}
@@ -98,11 +136,11 @@ export default function Forum() {
                     {index.review}
                   </Text>
                   <View
-                    style={{ display: "flex", flexDirection: "column", gap: 8 }}
+                    style={{ display: "flex", flexDirection: "row", gap: 8 }}
                   >
                     <Image
                       style={styles.itemProfile}
-                      source={require("../assets/donate_1.jpg")}
+                      source={require("../assets/uss.jpg")}
                     ></Image>
 
                     <Image
