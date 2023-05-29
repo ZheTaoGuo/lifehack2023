@@ -10,13 +10,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import Tree from "./pages/Tree";
-import Funds from "./pages/Funds";
+// import Funds from "./pages/Funds";
 import Volunteer from "./pages/Volunteer";
 import Profile from "./pages/Profile";
 import Redeem from "./pages/Redeem";
 import Activity from "./pages/activity";
 import RedeemDetail from "./pages/RedeemDetail"
 import FundsDetail from "./pages/FundsDetail";
+import Airlines from "./pages/airlines";
 
 export default function App() {
   const [navIndex, setNavIndex] = useState(0);
@@ -32,13 +33,14 @@ export default function App() {
           <Routes>
             <Route exact path="/" element={<Volunteer />} />
             <Route path="/tree" element={<Tree />} />
-            <Route path="/funds" element={<Funds />} />
+            {/* <Route path="/funds" element={<Funds />} /> */}
             <Route path="/profile" element={<Profile />} />
             <Route path="/activity" element={<Activity />} />
-
             <Route path="/redeem" element={<Redeem />} />
             <Route path="/redeem/:slug" element={<RedeemDetail />} />
-            <Route path="/funds/:slug" element={<FundsDetail />} />
+            {/* <Route path="/funds/:slug" element={<FundsDetail />} /> */}
+            <Route path="/airlines" element={<Airlines />} />
+            <Route path="/qrCode" component={<QRCodePage />} />
           </Routes>
         </ScrollView>
         <View style={styles.nav}>
@@ -54,7 +56,7 @@ export default function App() {
               <Text style={navIndex === 1 ? styles.navItemSelectedText : styles.navItemText}>Tree</Text>
             </View>
           </Link>
-          <Link to="/funds" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(2) } underlayColor="#f0f4f7" style={styles.navItem}>
+          <Link to="/airlines" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(2) } underlayColor="#f0f4f7" style={styles.navItem}>
             <View style={styles.subNavItem}>
               <FontAwesomeIcon style={styles.navIcon} icon={faSackDollar} color={navIndex === 2 ? "#2fac97" : "rgba(0, 0, 0, 0.3)"} />
               <Text style={navIndex === 2 ? styles.navItemSelectedText : styles.navItemText}>Funds</Text>
