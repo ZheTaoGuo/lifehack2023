@@ -31,6 +31,6 @@ Allows tourists to share reviews on visited tourist destinations
 
 ## Technical Stack
 
-FrontEnd: React Native 
-BackEnd: Flask & SQLite Backend
+* FrontEnd: React Native 
+* BackEnd: Flask & SQLite Backend
 
