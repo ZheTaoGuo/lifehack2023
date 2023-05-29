@@ -172,6 +172,7 @@ class VolunteerDetail extends React.Component {
                 />
               </View>
             </View>
+
           </View>
 
       </Modal>
@@ -264,7 +265,7 @@ class VolunteerDetail extends React.Component {
                   bottom: 10,
                   padding: 15,
                   width: "100%",
-                  fontSize: 32,
+                  fontSize: 10,
                   fontWeight: 600,
                   color: "white",
                   textShadow: "2px 4px 3px rgba(0,0,0,0.3)",
@@ -279,7 +280,7 @@ class VolunteerDetail extends React.Component {
                   top: 10,
                   padding: 15,
                   width: "100%",
-                  fontSize: 32,
+                  fontSize: 10,
                   display: "flex",
                 }}
               >
