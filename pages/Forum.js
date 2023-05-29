@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-native";
 
 const reviews = [
   {
-    attraction: "Universal Studios Singapore",
+    attraction: "Universal Studios",
     user: "John Doe",
     tag: ["Theme Park"],
     date: "18 May",
@@ -47,7 +47,7 @@ const reviews = [
     image: require("../assets/profile.png"),
   },
   {
-    attraction: "Universal Studios Singapore",
+    attraction: "Universal Studios",
     user: "Timmy Wong",
     tag: ["Theme Park"],
     date: "20 May",
@@ -55,7 +55,7 @@ const reviews = [
     image: require("../assets/profile.png"),
   },
   {
-    attraction: "Universal Studios Singapore",
+    attraction: "Universal Studios",
     user: "Zac Lim",
     tag: ["Theme Park"],
     date: "20 May",
@@ -223,12 +223,14 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
-    gap: 8
+    gap: 8,
+    overflow: "hidden"
   },
   itemProfile: {
     width: 250,
     height: "100%",
     padding: 30,
+    objectFit: "cover"
   },
   itemTitle: {
     fontSize: "1rem",

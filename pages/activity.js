@@ -93,9 +93,8 @@ export default function Activity() {
               >
                 <Text
                   style={{
-                    fontSize: 10,
+                    fontSize: "1rem",
                     fontWeight: 500,
-                    color: "#00997F",
                   }}
                 >
                   Date:
@@ -115,9 +114,8 @@ export default function Activity() {
               >
                 <Text
                   style={{
-                    fontSize: 10,
+                    fontSize: "1rem",
                     fontWeight: 500,
-                    color: "#00997F",
                   }}
                 >
                   Time:
@@ -137,9 +135,8 @@ export default function Activity() {
               >
                 <Text
                   style={{
-                    fontSize: 10,
+                    fontSize: "1rem",
                     fontWeight: 500,
-                    color: "#00997F",
                   }}
                 >
                   Venue:
@@ -159,7 +156,7 @@ export default function Activity() {
           justifyContent: "center",
           alignItems: "center",
           position: "absolute",
-          bottom: 80,
+          bottom: 10,
           zIndex: 5,
           boxShadow:
             "0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)",
@@ -258,6 +255,7 @@ const styles = StyleSheet.create({
     color: "white",
     paddingTop: 8,
     paddingBottom: 8,
+    bottom: 0
   },
   donateBtnDisabled: {
     backgroundColor: "#00997f80",
@@ -267,6 +265,7 @@ const styles = StyleSheet.create({
     color: "white",
     paddingTop: 8,
     paddingBottom: 8,
+    bottom: 0
   },
   card: {
     padding: "1rem",

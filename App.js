@@ -13,7 +13,6 @@ import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import Tree from "./pages/Itinerary";
-import Funds from "./pages/Funds";
 import Volunteer from "./pages/Volunteer";
 import Redeem from "./pages/Redeem";
 import Activity from "./pages/activity";
@@ -36,7 +35,6 @@ export default function App() {
           <Routes>
             <Route exact path="/" element={<Volunteer />} />
             <Route path="/tree" element={<Tree />} />
-            <Route path="/funds" element={<Funds />} />
             <Route path="/forum" element={<Forum/>} />
             <Route path="/activity" element={<Activity />} />
 
