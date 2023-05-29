@@ -9,6 +9,8 @@ import {
   faTicket,
   faComment
 } from "@fortawesome/free-solid-svg-icons";
+import "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import Tree from "./pages/Tree";
 import Funds from "./pages/Funds";
