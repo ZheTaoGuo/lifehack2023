@@ -6,7 +6,7 @@ import {
   faMapLocationDot,
   faUser,
   faClipboardCheck,
-  faTicket,
+  faPlane,
   faComment
 } from "@fortawesome/free-solid-svg-icons";
 import "react-native-gesture-handler";
@@ -65,12 +65,6 @@ export default function App() {
           <Link to="/airlines" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(2) } underlayColor="#f0f4f7" style={styles.navItem}>
             <View style={styles.subNavItem}>
               <FontAwesomeIcon style={styles.navIcon} icon={faPlane} color={navIndex === 2 ? "#0000CD" : "rgba(0, 0, 0, 0.3)"} />
-              <Text style={navIndex === 2 ? styles.navItemSelectedText : styles.navItemText}>Airlines</Text>
-            </View>
-          </Link>
-          <Link to="/forum" component={ TouchableWithoutFeedback } onPress={ () => setNavIndex(3) } underlayColor="#f0f4f7" style={styles.navItem}>
-            <View style={styles.subNavItem}>
-              <FontAwesomeIcon style={styles.navIcon} icon={faTicket} color={navIndex === 2 ? "#ADD8E6" : "rgba(0, 0, 0, 0.3)"} />
               <Text style={navIndex === 2 ? styles.navItemSelectedText : styles.navItemText}>Airlines</Text>
             </View>
           </Link>
