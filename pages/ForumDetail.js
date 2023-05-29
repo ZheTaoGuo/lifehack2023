@@ -10,19 +10,20 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-native";
+import {faStar, faPeriod} from "@fortawesome/free-solid-svg-icons";
 import StarRating from 'react-native-star-rating-widget';
 
 const reviews = {
   title: "Resort World Sentosa",
   tag: ["Sentosa"],
   image: "url",
-  amount: 80000,
-  donors: 502,
+  reviewCount: 80000,
+  stars: 4.8,
   dayLeft: 141,
   raised: 53695,
   charity: "Unicef",
   description:
-    "In post mean shot ye. There out her child sir his lived. Design at uneasy me season of branch on praise esteem. Abilities discourse believing consisted remaining to no. Mistaken no me denoting dashwood as screened. Whence or esteem easily he on. Dissuade husbands at of no if disposal.",
+    "The view at this attraction is amazing. I would recommend this attraction for first time tourists.",
 };
 
 export default function FundsDetail() {
@@ -43,7 +44,7 @@ export default function FundsDetail() {
       <SafeAreaView>
         <Image
           style={styles.itemProfile}
-          source={require("../assets/donate_2.jpg")}
+          source={require("../assets/rws.jpg")}
         />
         <View style={styles.redeemContainer}>
           <View style={styles.item}>
@@ -52,8 +53,8 @@ export default function FundsDetail() {
               <View
                 style={{
                   display: "flex",
-                  flexDirection: "row",
-                  gap: 5,
+                  flexDirection: "column",
+                  gap: 6,
                 }}
               >
                 {reviews.tag.map((t, key) => {
@@ -73,9 +74,14 @@ export default function FundsDetail() {
                     </Text>
                   );
                 })}
+                <View style={styles.iconDetails}>
+                  <FontAwesomeIcon style={styles.navIcon} icon={faStar} />
+                  <Text style={styles.reviewNum}>
+                    {(reviews.reviewCount / 10000)}k
+                  </Text>                  
+                </View>
+                
               </View>
-              <StarRating styles={styles.starRating} rating={5} starSize={20}> </StarRating>
-
               <Text>{reviews.description}</Text>
             </View>
           </View>
@@ -151,6 +157,11 @@ const styles = StyleSheet.create({
     fontSize: "1.5rem",
     fontWeight: 500,
   },
+  reviewNum: {
+    fontSize: "1.2rem",
+    fontWeight: 500,
+    color: "#ffd700",
+  },
   itemDesc: {
     color: "grey",
     fontSize: ".75rem",
@@ -216,9 +227,15 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 16,
   },
-  starRating:{
-    padding: 0,
-    margin: 0,
-    left: 0,
+  iconDetails:{
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center"
+  },
+  navIcon:{
+    color: "#ffd700",
+    height: 23,
+    width: 23,
   }
 });

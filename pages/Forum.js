@@ -32,7 +32,7 @@ const reviews = [
   },
   {
     attraction: "Singapore Flyer",
-    user: "Sarah Tom",
+    user: "Sarah Ho",
     tag: ["Observation Deck"],
     date: "20 May",
     review: "It was a horrible experience for my family. The observation deck was terrible",
@@ -40,7 +40,7 @@ const reviews = [
   },
   {
     attraction: "Singapore Flyer",
-    user: "Jimmy Tom",
+    user: "Sarah Jane",
     tag: ["Observation Deck"],
     date: "20 May",
     review: "It was a very good experience for my family. The view was great!",
@@ -48,7 +48,7 @@ const reviews = [
   },
   {
     attraction: "Universal Studios Singapore",
-    user: "Jimmy Tom",
+    user: "Timmy Wong",
     tag: ["Theme Park"],
     date: "20 May",
     review: "It was a bad experience for my family. The view was great",
@@ -56,7 +56,7 @@ const reviews = [
   },
   {
     attraction: "Universal Studios Singapore",
-    user: "Jimmy Tom",
+    user: "Zac Lim",
     tag: ["Theme Park"],
     date: "20 May",
     review: "It was a bad experience for my family. The view was horrendous.",
@@ -78,7 +78,7 @@ export default function Forum() {
   const [donated, setDonated] = useState(false);
 
   return (
-    <View style={{ backgroundColor: "#0000CD" }}>
+    <View style={{ backgroundColor: "#ADD8E6" }}>
       <SafeAreaView>
         <View style={styles.redeemContainer}>
           {reviews.map((index, key) => {
@@ -100,7 +100,7 @@ export default function Forum() {
                             color: "white",
                             padding: 4,
                             borderRadius: 4,
-                            backgroundColor: "#00997F",
+                            backgroundColor: "#ADD8E6",
                           }}
                           key={key}
                         >
@@ -135,10 +135,9 @@ export default function Forum() {
                     {index.review}
                   </Text>
                   <View
-                    style={{ display: "flex", flexDirection: "row", gap: 8 }}
+                    style={styles.itemContainer}
                   >
-                    <Image
-                      style={styles.itemProfile}
+                    <Image style={styles.itemProfile}
                       source={require("../assets/uss.jpg")}
                     ></Image>
 
@@ -220,11 +219,16 @@ const styles = StyleSheet.create({
     height: 48,
     borderRadius: 10,
   },
-
+  itemContainer:{
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    gap: 8
+  },
   itemProfile: {
     width: 250,
     height: "100%",
-    padding: 50,
+    padding: 30,
   },
   itemTitle: {
     fontSize: "1rem",
@@ -288,7 +292,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   donateBtn: {
-    backgroundColor: "#00997F",
+    backgroundColor: "#89CFF0",
     padding: 16,
     borderRadius: 8,
     color: "white",

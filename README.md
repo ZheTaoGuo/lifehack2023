@@ -32,3 +32,6 @@ Create collaboration opportunities with airlines and local businesses
 * FrontEnd: React Native 
 * BackEnd: Flask & SQLite Backend
 
+## Setup
+
+

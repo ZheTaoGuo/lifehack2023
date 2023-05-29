@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { useNavigate } from "react-router-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faShareNodes} from "@fortawesome/free-solid-svg-icons";
+import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 import { FlatList } from "react-native-gesture-handler";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
@@ -55,10 +55,11 @@ const Attractions = [
 // const display = Attractions;
 
 const categories = [
-  {id: "1", title: "Theme Park"},
-  {id: "2", title:"Wildlife Attractions"}, 
-  {id: "3", title: "General"}, 
-  {id: "4", title:"New Experiences"}];
+  { id: "1", title: "Theme Park" },
+  { id: "2", title: "Wildlife Attractions" },
+  { id: "3", title: "General" },
+  { id: "4", title: "New Experiences" },
+];
 
 export default function Volunteer() {
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ class VolunteerDetail extends React.Component {
     this.state = {
       currentIndex: 0,
       showFilter: false, // Track whether to show the filter modal
-      selectedCategory: 'All',
+      selectedCategory: "All",
       display: Attractions,
     };
 
@@ -112,7 +113,7 @@ class VolunteerDetail extends React.Component {
       extrapolate: "clamp",
     });
   }
-        
+
   componentWillMount() {
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
@@ -125,9 +126,6 @@ class VolunteerDetail extends React.Component {
             toValue: { x: SCREEN_WIDTH + 100, y: gestureState.dy },
           }).start(() => {
             this.props.navigation("/activity");
-            // this.setState({ currentIndex: this.state.currentIndex + 1 }, () => {
-            //   this.position.setValue({ x: 0, y: 0 })
-            // })
           });
         } else if (gestureState.dx < -120) {
           Animated.spring(this.position, {
@@ -148,322 +146,334 @@ class VolunteerDetail extends React.Component {
   }
 
   renderFilterModal = () => {
-    const { showFilter} = this.state;
+    const { showFilter } = this.state;
 
     return (
-      <Modal visible={showFilter} animationType="slide" >
-        <View style={styles.filterModalContainer}>
-            <View style={styles.filterModalHeader}>
-              <Text style={styles.filterModalTitle}>Filter By</Text>
-            </View>
-            <View style={styles.filterModalCategories}>
-              <View style={styles.list}>
-                <FlatList
-                  data={categories}
-                  renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => {
-                      this.setState({  selectedCategory: item.title ,  showFilter: false, currentIndex: 0 });
-                      this.setState({display : Attractions.filter(attraction => attraction.tag.includes(item.title))});
-
-                    }} >
-                      <Text style={styles.item}>{item.title}</Text>
-                    </TouchableOpacity>
-                  )}
-                />
-              </View>
-            </View>
-
+      <Modal visible={showFilter} animationType="slide">
+          <View style={styles.filterModalHeader}>
+            <Text style={styles.filterModalTitle}>Filter By</Text>
           </View>
-
+          <View style={styles.filterModalCategories}>
+            <View style={styles.list}>
+              <FlatList
+                data={categories}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.setState({
+                        selectedCategory: item.title,
+                        showFilter: false,
+                        currentIndex: 0,
+                      });
+                      this.setState({
+                        display: Attractions.filter((attraction) =>
+                          attraction.tag.includes(item.title)
+                        ),
+                      });
+                    }}
+                  >
+                    <Text style={styles.item}>{item.title}</Text>
+                  </TouchableOpacity>
+                )}
+              />
+            </View>
+          </View>
       </Modal>
     );
   };
-  
 
   renderAttractions = () => {
-    return this.state.display.map((item, i) => {
-      if (i < this.state.currentIndex) {
-        return null;
-      } else if (i == this.state.currentIndex) {
-        if (this.state.selectedCategory == item.tag[0] || this.state.selectedCategory == "All") {
-          return (
-            <Animated.View
-              {...this.PanResponder.panHandlers}
-              key={item.id}
-              style={[
-                this.rotateAndTranslate,
-                {
-                  height: SCREEN_HEIGHT - 120,
-                  width: SCREEN_WIDTH,
-                  padding: 10,
-                  position: "absolute",
-                },
-              ]}
-            >
+    return this.state.display
+      .map((item, i) => {
+        if (i < this.state.currentIndex) {
+          return null;
+        } else if (i == this.state.currentIndex) {
+          if (
+            this.state.selectedCategory == item.tag[0] ||
+            this.state.selectedCategory == "All"
+          ) {
+            return (
               <Animated.View
-                style={{
-                  opacity: this.likeOpacity,
-                  transform: [{ rotate: "-30deg" }],
-                  position: "absolute",
-                  top: 50,
-                  left: 40,
-                  zIndex: 1000,
-                }}
-              >
-                <Text
-                  style={{
-                    borderWidth: 1,
-                    borderColor: "green",
-                    color: "green",
-                    fontSize: 32,
-                    fontWeight: "800",
+                {...this.PanResponder.panHandlers}
+                key={item.id}
+                style={[
+                  this.rotateAndTranslate,
+                  {
+                    height: SCREEN_HEIGHT - 120,
+                    width: SCREEN_WIDTH,
                     padding: 10,
+                    position: "absolute",
+                  },
+                ]}
+              >
+                <Animated.View
+                  style={{
+                    opacity: this.likeOpacity,
+                    transform: [{ rotate: "-30deg" }],
+                    position: "absolute",
+                    top: 50,
+                    left: 40,
+                    zIndex: 1000,
                   }}
                 >
-                  LIKE
-                </Text>
-              </Animated.View>
-
-              <Animated.View
-                style={{
-                  opacity: this.dislikeOpacity,
-                  transform: [{ rotate: "30deg" }],
-                  position: "absolute",
-                  top: 50,
-                  right: 40,
-                  zIndex: 1000,
-                }}
-              >
-                <Text
-                  style={{
-                    borderWidth: 1,
-                    borderColor: "red",
-                    color: "red",
-                    fontSize: 32,
-                    fontWeight: "800",
-                    padding: 10,
-                  }}
-                >
-                  NOPE
-                </Text>
-              </Animated.View>
-
-              <Image
-                style={{
-                  flex: 1,
-                  height: null,
-                  width: null,
-                  resizeMode: "cover",
-                  borderRadius: 20,
-                }}
-                source={item.uri}
-              />
-
-              <Text
-                style={{
-                  position: "absolute",
-                  bottom: 10,
-                  padding: 15,
-                  width: "100%",
-                  fontSize: 10,
-                  fontWeight: 600,
-                  color: "white",
-                  textShadow: "2px 4px 3px rgba(0,0,0,0.3)",
-                }}
-              >
-                {item.title}
-              </Text>
-
-              <View
-                style={{
-                  position: "absolute",
-                  top: 10,
-                  padding: 15,
-                  width: "100%",
-                  fontSize: 10,
-                  display: "flex",
-                }}
-              >
-                {item.tag.map((t, key) => {
-                  return (
-                    <Text
-                      style={{
-                        display: "inline-block",
-                        width: "fit-content",
-                        color: "white",
-                        padding: 6,
-                        borderRadius: 4,
-                        backgroundColor: "#00997F",
-                        fontSize: "1rem"
-                      }}
-                      key={key}
-                    >
-                      {t}
-                    </Text>
-                  );
-                })}
-              </View>
-
-              <Text
-                style={{
-                  position: "absolute",
-                  bottom: 10,
-                  padding: 15,
-                  fontSize: 10,
-                  textAlign: "right",
-                  right: 20,
-                  color: "white"
-                }}
-              >
-                <FontAwesomeIcon icon={faShareNodes} size={32} color={"#fff"}/>
-              </Text>
-            </Animated.View>
-          );
-        }
-      } else {
-        if (this.state.selectedCategory == item.tag[0] || this.state.selectedCategory == "All") {
-        return (
-          <Animated.View
-            key={item.id}
-            style={[
-              {
-                opacity: this.nextCardOpacity,
-                transform: [{ scale: this.nextCardScale }],
-                height: SCREEN_HEIGHT - 120,
-                width: SCREEN_WIDTH,
-                padding: 10,
-                position: "absolute",
-              },
-            ]}
-          >
-            <Animated.View
-              style={{
-                opacity: 0,
-                transform: [{ rotate: "-30deg" }],
-                position: "absolute",
-                top: 50,
-                left: 40,
-                zIndex: 1000,
-              }}
-            >
-              <Text
-                style={{
-                  borderWidth: 1,
-                  borderColor: "green",
-                  color: "green",
-                  fontSize: 32,
-                  fontWeight: "800",
-                  padding: 10,
-                  
-                }}
-              >
-                LIKE
-              </Text>
-            </Animated.View>
-
-            <Animated.View
-              style={{
-                opacity: 0,
-                transform: [{ rotate: "30deg" }],
-                position: "absolute",
-                top: 50,
-                right: 40,
-                zIndex: 1000,
-              }}
-            >
-              <Text
-                style={{
-                  borderWidth: 1,
-                  borderColor: "red",
-                  color: "red",
-                  fontSize: 32,
-                  fontWeight: "800",
-                  padding: 10,
-                }}
-              >
-                NOPE
-              </Text>
-            </Animated.View>
-
-            <Image
-              style={{
-                flex: 1,
-                height: null,
-                width: null,
-                resizeMode: "cover",
-                borderRadius: 20,
-              }}
-              source={item.uri}
-            />
-            <Text
-              style={{
-                position: "absolute",
-                bottom: 10,
-                padding: 15,
-                // fontSize: "1.5rem",
-                textAlign: "right",
-                right: 20,
-                fontSize: 32,
-                fontWeight: 600,
-                color: "white",
-                textShadow: "2px 4px 3px rgba(0,0,0,0.3)",
-              }}
-            >
-              <FontAwesomeIcon icon={faShareNodes} size={32} color={"#fff"}/>
-            </Text>
-            <Text
-              style={{
-                position: "absolute",
-                bottom: 10,
-                padding: 15,
-                width: "100%",
-                fontSize: "1.5rem",
-              }}
-            >
-              {item.title}
-            </Text>
-            <View
-              style={{
-                position: "absolute",
-                top: 10,
-                padding: 15,
-                width: "100%",
-                fontSize: 32,
-                display: "flex",
-                fontWeight: 600,
-                textShadow: "2px 4px 3px rgba(0,0,0,0.3)",
-                color: "white"
-              }}
-            >
-              {item.tag.map((t, key) => {
-                return (
                   <Text
                     style={{
-                      display: "inline-block",
-                      width: "fit-content",
-                      color: "white",
-                      padding: 6,
-                      borderRadius: 4,
-                      backgroundColor: "#00997F",
+                      borderWidth: 1,
+                      borderColor: "green",
+                      color: "green",
                       fontSize: 32,
-                      fontWeight: 600,
-                      color: "white",
-                      textShadow: "2px 4px 3px rgba(0,0,0,0.3)",
+                      fontWeight: "800",
+                      padding: 10,
                     }}
-                    key={key}
                   >
-                    {t}
+                    LIKE
                   </Text>
-                );
-              })}
-            </View>
-          </Animated.View>
-        );
-        }
-      }
-    }).reverse();
-  };
+                </Animated.View>
 
+                <Animated.View
+                  style={{
+                    opacity: this.dislikeOpacity,
+                    transform: [{ rotate: "30deg" }],
+                    position: "absolute",
+                    top: 50,
+                    right: 40,
+                    zIndex: 1000,
+                  }}
+                >
+                  <Text
+                    style={{
+                      borderWidth: 1,
+                      borderColor: "red",
+                      color: "red",
+                      fontSize: 32,
+                      fontWeight: "800",
+                      padding: 10,
+                    }}
+                  >
+                    NOPE
+                  </Text>
+                </Animated.View>
+
+                <Image
+                  style={{
+                    flex: 1,
+                    height: null,
+                    width: null,
+                    resizeMode: "cover",
+                    borderRadius: 20,
+                  }}
+                  source={item.uri}
+                />
+
+                <Text
+                  style={{
+                    position: "absolute",
+                    bottom: 10,
+                    padding: 15,
+                    width: "100%",
+                    fontSize: 10,
+                    fontWeight: 600,
+                    color: "white",
+                    textShadow: "2px 4px 3px rgba(0,0,0,0.3)",
+                  }}
+                >
+                  {item.title}
+                </Text>
+
+                <View
+                  style={{
+                    position: "absolute",
+                    top: 10,
+                    padding: 15,
+                    width: "100%",
+                    fontSize: 10,
+                    display: "flex",
+                  }}
+                >
+                  {item.tag.map((t, key) => {
+                    return (
+                      <Text
+                        style={{
+                          display: "inline-block",
+                          width: "fit-content",
+                          color: "white",
+                          padding: 6,
+                          borderRadius: 4,
+                          backgroundColor: "#0000CD",
+                          fontSize: "1rem",
+                        }}
+                        key={key}
+                      >
+                        {t}
+                      </Text>
+                    );
+                  })}
+                </View>
+
+                <Text
+                  style={{
+                    position: "absolute",
+                    bottom: 10,
+                    padding: 15,
+                    fontSize: 10,
+                    textAlign: "right",
+                    right: 20,
+                    color: "white",
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faShareNodes}
+                    size={32}
+                    color={"#fff"}
+                  />
+                </Text>
+              </Animated.View>
+            );
+          }
+        } else {
+          if (
+            this.state.selectedCategory == item.tag[0] ||
+            this.state.selectedCategory == "All"
+          ) {
+            return (
+              <Animated.View
+                key={item.id}
+                style={[
+                  {
+                    opacity: this.nextCardOpacity,
+                    transform: [{ scale: this.nextCardScale }],
+                    height: SCREEN_HEIGHT - 120,
+                    width: SCREEN_WIDTH,
+                    padding: 10,
+                    position: "absolute",
+                  },
+                ]}
+              >
+                <Animated.View
+                  style={{
+                    opacity: 0,
+                    transform: [{ rotate: "-30deg" }],
+                    position: "absolute",
+                    top: 50,
+                    left: 40,
+                    zIndex: 1000,
+                  }}
+                >
+                  <Text
+                    style={{
+                      borderWidth: 1,
+                      borderColor: "green",
+                      color: "green",
+                      fontSize: 32,
+                      fontWeight: "800",
+                      padding: 10,
+                    }}
+                  >
+                    LIKE
+                  </Text>
+                </Animated.View>
+
+                <Animated.View
+                  style={{
+                    opacity: 0,
+                    transform: [{ rotate: "30deg" }],
+                    position: "absolute",
+                    top: 50,
+                    right: 40,
+                    zIndex: 1000,
+                  }}
+                >
+                  <Text
+                    style={{
+                      borderWidth: 1,
+                      borderColor: "red",
+                      color: "red",
+                      fontSize: 32,
+                      fontWeight: "800",
+                      padding: 10,
+                    }}
+                  >
+                    NOPE
+                  </Text>
+                </Animated.View>
+
+                <Image
+                  style={{
+                    flex: 1,
+                    height: null,
+                    width: null,
+                    resizeMode: "cover",
+                    borderRadius: 20,
+                  }}
+                  source={item.uri}
+                />
+                <Text
+                  style={{
+                    position: "absolute",
+                    bottom: 10,
+                    padding: 15,
+                    fontSize: "1.5rem",
+                    textAlign: "right",
+                    right: 20,
+                    color: "white",
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faShareNodes}
+                    size={32}
+                    color={"#fff"}
+                  />
+                </Text>
+                <Text
+                  style={{
+                    position: "absolute",
+                    bottom: 10,
+                    padding: 15,
+                    width: "100%",
+                    fontSize: "1.5rem",
+                  }}
+                >
+                  {item.title}
+                </Text>
+                <View
+                  style={{
+                    position: "absolute",
+                    top: 10,
+                    padding: 15,
+                    width: "100%",
+                    fontSize: "1.5rem",
+                    display: "flex",
+                    fontWeight: 600,
+                    textShadow: "2px 4px 3px rgba(0,0,0,0.3)",
+                    color: "white",
+                  }}
+                >
+                  {item.tag.map((t, key) => {
+                    return (
+                      <Text
+                        style={{
+                          display: "inline-block",
+                          width: "fit-content",
+                          color: "white",
+                          padding: 6,
+                          borderRadius: 4,
+                          backgroundColor: "#00997F",
+                          fontSize: "1rem",
+                        }}
+                        key={key}
+                      >
+                        {t}
+                      </Text>
+                    );
+                  })}
+                </View>
+              </Animated.View>
+            );
+          }
+        }
+      })
+      .reverse();
+  };
 
   render() {
     return (
@@ -477,7 +487,6 @@ class VolunteerDetail extends React.Component {
             <View style={{ flex: 1 }}>{this.renderFilterModal()}</View>
           </TouchableOpacity>
         </View>
-        
       </View>
     );
   }
@@ -486,7 +495,7 @@ class VolunteerDetail extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#ADD8E6",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -497,12 +506,13 @@ const styles = StyleSheet.create({
     right: 20,
     borderWidth: 1,
     borderColor: "#f2f2f2",
-    borderRadius: 10,
-    padding: 15,
-    backgroundColor: "blue",
+    width: "fit-content",
+    padding: 10,
+    borderRadius: 8,
+    backgroundColor: "#ADD8E6",
   },
   filterButton: {
-    backgroundColor: "green",
+    backgroundColor: "#0000CD",
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -524,7 +534,7 @@ const styles = StyleSheet.create({
   filterModalHeader: {
     height: 80,
     paddingTop: 38,
-    backgroundColor: "blue",
+    backgroundColor: "#ADD8E6",
   },
 
   filterModalTitle: {
@@ -541,5 +551,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "dashed",
     borderRadius: 10,
+    fontWeight: 300,
+    backgroundColor: "#ADD8E6"
   },
 });
