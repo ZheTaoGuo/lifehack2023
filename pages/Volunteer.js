@@ -172,7 +172,6 @@ class VolunteerDetail extends React.Component {
                 />
               </View>
             </View>
-
           </View>
 
       </Modal>
