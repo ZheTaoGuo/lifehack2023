@@ -144,6 +144,57 @@ const LeaderItem = ({ item }) => {
   );
 };
 
+// const TodoList = () => {
+//   const [text, setText] = useState("");
+//   const [data, setData] = useState([]);
+
+//   const handleTextInput = (input) => {
+//     setText(input);
+//   };
+
+//   const handleAddTodo = () => {
+//     // get the current text value
+//     const todo = text.trim();
+//     if (!todo) return;
+//     // generate unique key id
+//     const key = uuidv4();
+//     // add new todo with the unique key we generated
+//     setData((prevData) => {
+//       const newItem = {
+//         key,
+//         todo,
+//         isCompleted: false,
+//       };
+//       return [newItem, ...prevData];
+//     });
+//     // reset the input field
+//     setText("");
+//   };
+
+//   const renderItem = ({ item }) => {
+//     return <Item item={item} />;
+//   };
+
+//   return (
+//     <View>
+//       <TextInput
+//         style={styles.input}
+//         onChangeText={handleTextInput}
+//         value={text}
+//         onSubmitEditing={handleAddTodo}
+//         outline
+//       />
+
+//       <DraggableFlatList
+//         data={data}
+//         onDragEnd={({ data }) => setData(data)}
+//         keyExtractor={(item) => item.key}
+//         renderItem={renderItem}
+//       />
+//     </View>    
+//   );
+// };
+
 const DragAndDrop = () => {
   const [widgets, setWidgets] = useState([]);
 
@@ -533,6 +584,186 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 10,
+  },
+  itemTitle: {
+    fontSize: "1rem",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    fontWeight: 500,
+    marginBottom: 5,
+  },
+  itemDesc: {
+    color: "grey",
+    fontSize: ".75rem",
+  },
+  itemPoint: {
+    fontWeight: 600,
+    fontSize: "1rem",
+  },
+  button: {
+    alignItems: "center",
+    margin: 5,
+  },
+  imagebtn: {
+    height: 64,
+    width: 64,
+  },
+});
+
+function OldTree() {
+  const navigate = useNavigate();
+
+  const btnHandle = () => {
+    console.log("btn pressed");
+  };
+
+  const renderItem = ({ item }) => {
+    return <Item item={item} />;
+  };
+
+  const renderLeaderItem = ({ item }) => {
+    return <LeaderItem item={item} />;
+  };
+
+  const navigateToContacts = () => {
+    navigate("/redeem");
+  };
+
+  return(
+    <SafeAreaView style={styles.container}>
+
+    <View style={styles.container}>
+    <View>
+      <Text style={{fontSize: 30, fontWeight:'600'}}>Itinery</Text>
+      <Text style={styles.welcomeMessage}>Your 3D2N trip</Text>
+    </View>
+
+    <DragAndDrop/>
+
+    <View style={styles.card}>
+      <Text
+        style={{
+          fontSize: "24px",
+          marginBottom: "8px",
+          fontWeight: "500",
+        }}
+      >Day 1
+      </Text>
+    <FlatList
+        data={activities}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+          </View>
+
+          <View style={styles.card}>
+      <Text
+        style={{
+          fontSize: "24px",
+          marginBottom: "8px",
+          fontWeight: "500",
+        }}
+      >Day 2
+      </Text>
+    <FlatList
+        data={activities}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+          </View>
+
+          <View style={styles.card}>
+      <Text
+        style={{
+          fontSize: "24px",
+          marginBottom: "8px",
+          fontWeight: "500",
+        }}
+      >Day 3
+      </Text>
+    <FlatList
+        data={activities}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+          </View>
+
+    </View>
+    </SafeAreaView>
+  )
+}
+
+const styles = StyleSheet.create({
+  btnContainer: {
+    display: "flex",
+    flexDirection: "column",
+    position: "absolute",
+    top: 30,
+    right: 10,
+    zIndex: 1,
+  },
+  pointContainer: {
+    display: "flex",
+    flexDirection: "column",
+    position: "absolute",
+    top: 60,
+    left: "50%",
+    zIndex: 1,
+    transform: "translate(-50%, -50%)",
+    padding: 24,
+    paddingTop: 12,
+    paddingBottom: 12,
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
+    borderRadius: 8,
+  },
+  pointText: {
+    fontSize: "1.2rem",
+    fontWeight: 600,
+  },
+  container: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+    marginHorizontal: 16,
+    marginTop: 16,
+  },
+  card: {
+    padding: "1.5rem",
+    paddingTop: "1rem",
+    borderRadius: 8,
+    backgroundColor: "white",
+    boxShadow: "0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)",
+    marginTop: 20
+  },
+  space: {
+    margin: "1rem",
+  },
+  item: {
+    marginVertical: 8,
+    display: "flex",
+    flexDirection: "row",
+    gap: "16px",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingBottom: "1rem",
+    borderBottomWidth: "1px",
+    borderColor: "#e5e7eb",
+  },
+  header: {
+    fontSize: 32,
+    backgroundColor: "#fff",
+  },
+  title: {
+    fontSize: 24,
+  },
+  tinyLogo: {
+    width: "100%",
+    height: 500,
+  },
+  itemProfile: {
+    width: 48,
+    height: 48,
+    borderRadius: 99999,
   },
   itemTitle: {
     fontSize: "1rem",
